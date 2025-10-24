@@ -10,6 +10,9 @@ import TracksList from "./components/TrackList";
 import LikedTracksInfo from "./components/LikedTracksInfo";
 import MusicList from "./components/MusicList";
 import ArtistInfo from "./components/ArtistInfo";
+import { useArtistLikedTracksCount } from "../../hooks/useArtistLikedTracksCount";
+import { useGetUserQuery } from "../../state/UserApi.slice";
+import { useNotification } from "../../hooks/useNotification";
 
 interface ArtistMainMenuProps {
   isLoading?: boolean;
@@ -36,8 +39,11 @@ const ArtistMainMenu: FC<ArtistMainMenuProps> = ({
   toggleFollow,
   isFollowingLoading = false,
 }) => {
+  const { data: user } = useGetUserQuery()
+  const { showError } = useNotification();
   const { shuffle } = useSelector((state: AppState) => state.queue);
   const dispatch = useDispatch<AppDispatch>();
+  const { count } = useArtistLikedTracksCount(artist._id);
 
   const singleTracks = useMemo(
     () => tracks.filter((track) => track.album === "single"),
@@ -60,6 +66,9 @@ const ArtistMainMenu: FC<ArtistMainMenuProps> = ({
   }, [tracks, dispatch]);
 
   const handleFollowArtist = useCallback(() => {
+    if(!user){
+      showError("You must be logged in to perform this action")
+    }
     toggleFollow();
   }, [toggleFollow]);
 
@@ -143,9 +152,9 @@ const ArtistMainMenu: FC<ArtistMainMenuProps> = ({
         />
       </section>
 
-      <section className="px-3 sm:px-6 py-3" aria-labelledby="liked-tracks">
+     {count !== 0 ? <section className="px-3 sm:px-6 py-3" aria-labelledby="liked-tracks">
         <LikedTracksInfo artist={artist} isLoading={isLoading} />
-      </section>
+      </section> : <div></div>}
 
       <section className="px-3 sm:px-6 py-5" aria-labelledby="music-collection">
         <MusicList

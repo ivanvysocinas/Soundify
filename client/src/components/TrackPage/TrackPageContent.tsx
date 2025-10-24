@@ -18,6 +18,7 @@ import type { AppDispatch, AppState } from "../../store";
 import { setIsPlaying } from "../../state/CurrentTrack.slice";
 import { playTrackAndQueue } from "../../state/Queue.slice";
 import type { Track } from "../../types/TrackData";
+import { useGetUserQuery } from "../../state/UserApi.slice";
 
 interface TrackPageContentProps {
   track: Track;
@@ -39,6 +40,7 @@ const TrackPageContent = ({ track }: TrackPageContentProps) => {
 
   const { isLiked, isPending: likePending, toggleLike } = useLike(track._id);
   const { showSuccess, showError } = useNotification();
+  const { data: user} = useGetUserQuery();
 
   const isCurrentTrack = currentTrack.currentTrack?._id === track._id;
   const isThisTrackPlaying = isCurrentTrack && currentTrack.isPlaying;
@@ -60,6 +62,9 @@ const TrackPageContent = ({ track }: TrackPageContentProps) => {
    */
   const handleLikeClick = useCallback(
     async (e: React.MouseEvent) => {
+      if(!user){
+        showError("You must be logged in to perform this action")
+      }
       e.stopPropagation();
       if (!likePending) {
         await toggleLike();

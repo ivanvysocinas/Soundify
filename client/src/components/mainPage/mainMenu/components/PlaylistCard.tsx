@@ -1,7 +1,5 @@
 import { memo, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
-import { CaretRightOutlined, PauseOutlined } from "@ant-design/icons";
 import type { Playlist } from "../../../../types/Playlist";
 import { useFormatTime } from "../../../../hooks/useFormatTime";
 
@@ -15,8 +13,6 @@ interface PlaylistCardProps {
  */
 const PlaylistCard = ({ playlist }: PlaylistCardProps) => {
   const [hover, setHover] = useState(false);
-  const [playHover, setPlayHover] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
   const navigate = useNavigate();
 
   const formatTimeString = useCallback((timeStr: string) => {
@@ -42,15 +38,8 @@ const PlaylistCard = ({ playlist }: PlaylistCardProps) => {
   }, []);
 
   const handleNavigate = useCallback(() => {
-    if (!playHover) {
-      navigate(`/playlist/${playlist._id}`);
-    }
-  }, [playHover, navigate, playlist._id]);
-
-  const handlePlayToggle = useCallback((e: React.MouseEvent) => {
-    e.stopPropagation();
-    setIsPlaying((prev) => !prev);
-  }, []);
+    navigate(`/playlist/${playlist._id}`);
+  }, [ navigate, playlist._id]);
 
   const MobileCard = () => (
     <div
@@ -82,27 +71,6 @@ const PlaylistCard = ({ playlist }: PlaylistCardProps) => {
               </span>
             </div>
           </div>
-
-          <motion.button
-            className="w-12 h-12 bg-[#5cec8c] rounded-full flex items-center justify-center shadow-lg ml-4"
-            onClick={handlePlayToggle}
-            onMouseEnter={() => setPlayHover(true)}
-            onMouseLeave={() => setPlayHover(false)}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2 }}
-          >
-            {isPlaying ? (
-              <PauseOutlined style={{ fontSize: "20px", color: "black" }} />
-            ) : (
-              <CaretRightOutlined
-                style={{ fontSize: "20px", color: "black" }}
-                className="ml-1"
-              />
-            )}
-          </motion.button>
         </div>
       </div>
     </div>
@@ -135,31 +103,6 @@ const PlaylistCard = ({ playlist }: PlaylistCardProps) => {
             </span>
           </div>
         </div>
-
-        {hover && (
-          <motion.div
-            className="mb-[-20px]"
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0 }}
-          >
-            <button
-              className="w-14 h-14 bg-black rounded-full flex items-center justify-center shadow-lg cursor-pointer transition-all duration-200 hover:scale-105"
-              onClick={handlePlayToggle}
-              onMouseEnter={() => setPlayHover(true)}
-              onMouseLeave={() => setPlayHover(false)}
-            >
-              {isPlaying ? (
-                <PauseOutlined style={{ fontSize: "28px", color: "#5cec8c" }} />
-              ) : (
-                <CaretRightOutlined
-                  style={{ fontSize: "28px", color: "#5cec8c" }}
-                  className="ml-1"
-                />
-              )}
-            </button>
-          </motion.div>
-        )}
       </div>
     </div>
   );

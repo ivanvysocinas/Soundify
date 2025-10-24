@@ -25,6 +25,7 @@ import { motion, AnimatePresence, type PanInfo } from "framer-motion";
 import { useFormatTime } from "../../../../../hooks/useFormatTime";
 import { useLike } from "../../../../../hooks/useLike";
 import { Link } from "react-router-dom";
+import { useGetUserQuery } from "../../../../../state/UserApi.slice";
 
 const MOBILE_NAV_HEIGHT = 80;
 
@@ -49,6 +50,8 @@ const MobilePlayer = () => {
   const dispatch = useDispatch<AppDispatch>();
   const currentTrack = useSelector((state: AppState) => state.currentTrack);
   const queueState = useSelector((state: AppState) => state.queue);
+
+  const { data: user } = useGetUserQuery();
 
   const [isExpanded, setIsExpanded] = useState(false);
   const [isLoading, _setIsLoading] = useState(false);
@@ -444,12 +447,14 @@ const MobilePlayer = () => {
                         </Link>
                       </div>
 
-                      <motion.button
+                      {user ? <motion.button
                         className="p-1"
                         whileTap={{ scale: 0.9 }}
                         onMouseEnter={() => setLikeHover(true)}
                         onMouseLeave={() => setLikeHover(false)}
-                        onClick={toggleLike}
+                        onClick={() => {
+                          toggleLike;
+                        }}
                         disabled={likePending}
                       >
                         {likePending ? (
@@ -469,7 +474,7 @@ const MobilePlayer = () => {
                             style={{ color: likeHover ? "#D3D3D3" : "#fff" }}
                           />
                         )}
-                      </motion.button>
+                      </motion.button> : <div></div>}
                     </div>
                   </motion.div>
 

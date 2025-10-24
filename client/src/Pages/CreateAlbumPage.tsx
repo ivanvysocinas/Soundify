@@ -12,6 +12,8 @@ import AlbumTracksList from "../components/CreateAlbum/AlbumTracksList";
 import UploadTrackToAlbumModal from "../components/CreateAlbum/UploadTrackToAlbumModal";
 import BatchSaveModal from "../components/CreateAlbum/BatchSaveModal";
 import { useNavigate } from "react-router-dom";
+import { useGetUserQuery } from "../state/UserApi.slice";
+import AuthenticationWarning from "../shared/components/AuthWarning";
 
 /**
  * Create Album Page
@@ -20,6 +22,8 @@ import { useNavigate } from "react-router-dom";
 const CreateAlbumPage: React.FC = () => {
   const { showSuccess, showError, showWarning } = useNotification();
   const navigate = useNavigate();
+  const { data: currentUser, isLoading: isCurrentUserLoading } =
+    useGetUserQuery();
 
   const [albumData, setAlbumData] = useState<AlbumData>({
     name: "",
@@ -206,6 +210,12 @@ const CreateAlbumPage: React.FC = () => {
   }, []);
 
   const validation = canSave;
+
+  const isAuthenticated = !!currentUser && !isCurrentUserLoading;
+
+  if (!isAuthenticated && !isCurrentUserLoading) {
+    return <AuthenticationWarning />;
+  }
 
   return (
     <div className="min-h-screen mb-32 pl-4 xl:mb-1 xl:pl-[22vw] mx-auto xl:mx-0">

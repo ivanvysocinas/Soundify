@@ -17,6 +17,7 @@ import { playTrackAndQueue } from "../state/Queue.slice";
 import { api } from "../shared/api";
 import type { AppDispatch } from "../store";
 import type { Track } from "../types/TrackData";
+import { useNotification } from "../hooks/useNotification";
 
 /**
  * Artists Discovery Page
@@ -113,7 +114,7 @@ const ArtistCard: React.FC<ArtistCardProps> = ({
     async (track: SimpleTrack, e: React.MouseEvent) => {
       e.stopPropagation();
 
-      if (!track || !user) return;
+      if (!track) return;
 
       const isCurrentTrack = currentTrack.currentTrack?._id === track._id;
 
@@ -121,15 +122,14 @@ const ArtistCard: React.FC<ArtistCardProps> = ({
         dispatch(setIsPlaying(!currentTrack.isPlaying));
         return;
       }
-
+      const fullTrack: Track = track as any;
+      let playQueue = [fullTrack];
       try {
-        const response = await api.recommendations.getForUser(user._id);
-        const data = await response.json();
-
-        if (data.success) {
-          const recommendations: Track[] = data.data || [];
-          const fullTrack: Track = track as any;
-          const playQueue = [fullTrack, ...recommendations];
+        if(user?._id){
+          const response = await api.recommendations.getForUser(user._id);
+          const recommendations = await response.json();
+          playQueue = [track, ...recommendations];
+        }
 
           await dispatch(
             playTrackAndQueue({
@@ -142,12 +142,6 @@ const ArtistCard: React.FC<ArtistCardProps> = ({
           setTimeout(() => {
             dispatch(setIsPlaying(true));
           }, 50);
-        } else {
-          dispatch(setCurrentTrack(track as any));
-          setTimeout(() => {
-            dispatch(setIsPlaying(true));
-          }, 50);
-        }
       } catch (error) {
         console.error("Error getting recommendations:", error);
         dispatch(setCurrentTrack(track as any));
@@ -337,6 +331,7 @@ const ArtistCard: React.FC<ArtistCardProps> = ({
 export default function Artists() {
   const navigate = useNavigate();
   const { data: user } = useGetUserQuery();
+  const { showError } = useNotification();
 
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<SearchResult | null>(null);
@@ -461,11 +456,9 @@ export default function Artists() {
 
   const handleLikeArtist = useCallback(
     async (artistId: string) => {
-      if (!user) {
-        navigate("/login");
-        return;
+      if(!user){
+        showError("You must be logged in to perform this action")
       }
-
       try {
         const response = await api.artist.like(artistId);
 

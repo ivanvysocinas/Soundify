@@ -8,6 +8,7 @@ import { useNotification } from "../hooks/useNotification";
 import { useGetUserQuery } from "../state/UserApi.slice";
 import { useArtistProfileCheck } from "../hooks/useArtistProfileCheck";
 import Home from "../components/BecomeAnArtist/Home";
+import AuthenticationWarning from "../shared/components/AuthWarning";
 
 /**
  * Become an Artist Page
@@ -34,53 +35,6 @@ const DEFAULT_ARTIST: ArtistCreate = {
   genres: [],
   socialLinks: {},
 };
-
-const AuthenticationWarning = () => (
-  <div className="min-h-screen w-full flex items-center justify-center p-4">
-    <div className="max-w-md w-full bg-gradient-to-br from-gray-800/90 to-gray-900/90 backdrop-blur-xl border border-white/10 rounded-2xl p-8 text-center shadow-2xl">
-      <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-full flex items-center justify-center">
-        <svg
-          className="w-8 h-8 text-green-400"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"
-          />
-        </svg>
-      </div>
-
-      <h1 className="text-2xl font-bold text-white mb-4">Join as an Artist</h1>
-      <p className="text-white/70 mb-6 leading-relaxed">
-        You need to be logged in to create an artist profile and start sharing
-        your music with the world.
-      </p>
-
-      <div className="space-y-3">
-        <button
-          onClick={() => (window.location.href = "/login")}
-          className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-105"
-        >
-          Sign In to Continue
-        </button>
-        <button
-          onClick={() => (window.location.href = "/register")}
-          className="w-full bg-transparent border border-white/20 hover:border-white/40 text-white font-medium py-3 px-6 rounded-xl transition-all duration-200"
-        >
-          Create Account
-        </button>
-      </div>
-
-      <p className="text-white/50 text-sm mt-6">
-        Ready to share your talent? Join thousands of artists today!
-      </p>
-    </div>
-  </div>
-);
 
 export default function BecomeAnArtist() {
   const { data: currentUser, isLoading: isCurrentUserLoading } =

@@ -7,6 +7,7 @@ import { useGetUserQuery } from "../state/UserApi.slice";
 import { useNotification } from "../hooks/useNotification";
 import { type Artist } from "../types/ArtistData";
 import { api } from "../shared/api";
+import AuthenticationWarning from "../shared/components/AuthWarning";
 
 /**
  * Artist Studio - main dashboard for artists
@@ -157,6 +158,12 @@ export default function ArtistStudio() {
     setError(null);
     refetchArtist();
   }, [refetchArtist]);
+
+  const isAuthenticated = !!user && !isUserLoading;
+
+  if (!isAuthenticated && !isUserLoading) {
+      return <AuthenticationWarning />;
+    }
 
   const ErrorComponent = useMemo(() => {
     if (!error) return null;

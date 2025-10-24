@@ -110,6 +110,9 @@ const TrackLayout = ({
 
   const handleLikeClick = useCallback(async () => {
     if (!track?._id) return;
+    if(!user){
+      showError("You must be logged in to perform this action")
+    }
     await toggleLike();
   }, [track, toggleLike]);
 

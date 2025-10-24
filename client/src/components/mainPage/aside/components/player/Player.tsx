@@ -966,7 +966,12 @@ const Player = () => {
               className="pb-1 cursor-pointer transition-colors duration-200"
               onMouseEnter={() => setLikeHover(true)}
               onMouseLeave={() => setLikeHover(false)}
-              onClick={toggleLike}
+              onClick={() => {
+                if (!user) {
+                  showError("You must be logged in to perform this action");
+                }
+                toggleLike();
+              }}
             />
           ) : (
             <HeartOutlined
@@ -977,7 +982,12 @@ const Player = () => {
               className="pb-1 cursor-pointer transition-colors duration-200"
               onMouseEnter={() => setLikeHover(true)}
               onMouseLeave={() => setLikeHover(false)}
-              onClick={toggleLike}
+              onClick={() => {
+                if (!user) {
+                  showError("You must be logged in to perform this action");
+                }
+                toggleLike();
+              }}
             />
           )}
         </div>

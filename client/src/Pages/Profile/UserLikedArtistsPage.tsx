@@ -7,49 +7,6 @@ import { useUserData } from "../../hooks/useUserData";
 import { useGetUserQuery } from "../../state/UserApi.slice";
 import ProfileArtistTemplate from "../../components/Profile/components/ProfileArtistTemplate";
 
-// Authentication warning component for unauthenticated users
-const AuthenticationWarning = () => (
-  <div className="min-h-screen w-full flex items-center justify-center p-4">
-    <div className="max-w-md w-full bg-gradient-to-br from-gray-800/90 to-gray-900/90 backdrop-blur-xl border border-white/10 rounded-2xl p-8 text-center shadow-2xl">
-      <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full flex items-center justify-center">
-        <svg
-          className="w-8 h-8 text-blue-400"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-          />
-        </svg>
-      </div>
-      <h1 className="text-2xl font-bold text-white mb-4">
-        Authentication Required
-      </h1>
-      <p className="text-white/70 mb-6">
-        You need to be logged in to view user profiles and liked artists.
-      </p>
-      <div className="space-y-3">
-        <button
-          onClick={() => (window.location.href = "/login")}
-          className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200"
-        >
-          Sign In
-        </button>
-        <button
-          onClick={() => (window.location.href = "/register")}
-          className="w-full bg-transparent border border-white/20 hover:border-white/40 text-white font-medium py-3 px-6 rounded-xl transition-all duration-200"
-        >
-          Create Account
-        </button>
-      </div>
-    </div>
-  </div>
-);
-
 // Error display component with retry functionality
 const ErrorDisplay = ({
   error,
@@ -114,7 +71,7 @@ const UserLikedArtistsPage = () => {
   };
 
   if (!isAuthenticated && !isCurrentUserLoading) {
-    return <AuthenticationWarning />;
+    navigate("/login");
   }
 
   if (error && !isLoading) {

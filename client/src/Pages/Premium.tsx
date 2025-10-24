@@ -12,6 +12,8 @@ import {
   PlayCircleOutlined,
   AppstoreOutlined,
 } from "@ant-design/icons";
+import { useGetUserQuery } from "../state/UserApi.slice";
+import AuthenticationWarning from "../shared/components/AuthWarning";
 
 /**
  * Premium upgrade page
@@ -19,6 +21,8 @@ import {
  */
 const Premium = () => {
   const navigate = useNavigate();
+  const { data: currentUser, isLoading: isCurrentUserLoading } =
+    useGetUserQuery();
   const { showSuccess, showError, showLoading, dismiss } = useNotification();
   const [isProcessing, setIsProcessing] = useState(false);
   const [formData, setFormData] = useState({
@@ -28,6 +32,12 @@ const Premium = () => {
     cardholderName: "",
     email: "",
   });
+
+  const isAuthenticated = !!currentUser && !isCurrentUserLoading;
+
+  if (!isAuthenticated && !isCurrentUserLoading) {
+    return <AuthenticationWarning />;
+  }
 
   const premiumFeatures = useMemo(
     () => [

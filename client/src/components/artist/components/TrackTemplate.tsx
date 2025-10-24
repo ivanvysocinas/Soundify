@@ -19,6 +19,7 @@ import {
 } from "../../../state/CurrentTrack.slice";
 import { useNavigate } from "react-router-dom";
 import { useNotification } from "../../../hooks/useNotification";
+import { useGetUserQuery } from "../../../state/UserApi.slice";
 
 interface TrackTemplateProps {
   track: Track;
@@ -153,6 +154,7 @@ const TrackTemplate: FC<TrackTemplateProps> = ({
   const isCurrentTrack = currentTrack.currentTrack?._id === track?._id;
   const isThisTrackPlaying = isCurrentTrack && currentTrack.isPlaying;
   const navigate = useNavigate();
+  const { data: user } = useGetUserQuery();
   const { showSuccess, showError } = useNotification();
 
   const duration = useFormatTime(track?.duration || 0);
@@ -205,6 +207,9 @@ const TrackTemplate: FC<TrackTemplateProps> = ({
 
   const handleLikeClick = useCallback(
     async (e: React.MouseEvent) => {
+      if(!user){
+        showError("You must be logged in to perform this action")
+      }
       e.stopPropagation();
       if (!isLoading && !likePending) {
         await toggleLike();

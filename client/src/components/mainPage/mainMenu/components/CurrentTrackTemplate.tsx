@@ -14,6 +14,7 @@ import { setIsPlaying } from "../../../../state/CurrentTrack.slice";
 import { addToQueue } from "../../../../state/Queue.slice";
 import type { Track } from "../../../../types/TrackData";
 import ContextMenu from "../../../mainPage/mainMenu/components/ContextMenu";
+import { useGetUserQuery } from "../../../../state/UserApi.slice";
 
 interface CurrentTrackTemplateProps {
   track: Track;
@@ -34,6 +35,7 @@ const CurrentTrackTemplate = ({ track }: CurrentTrackTemplateProps) => {
   const isPlaying = currentTrack.isPlaying && isCurrentTrack;
   const navigate = useNavigate();
   const { showError, showSuccess } = useNotification();
+  const {data: user} = useGetUserQuery();
 
   const { isLiked, isPending: likePending, toggleLike } = useLike(track._id);
 
@@ -48,6 +50,9 @@ const CurrentTrackTemplate = ({ track }: CurrentTrackTemplateProps) => {
 
   const handleLikeClick = useCallback(async () => {
     if (!track?._id) return;
+    if(!user){
+      showError("You must be logged in to perform this action")
+    }
     await toggleLike();
   }, [track, toggleLike]);
 

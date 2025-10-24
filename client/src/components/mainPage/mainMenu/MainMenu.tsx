@@ -267,29 +267,34 @@ const MainMenu = () => {
           )}
         </AnimatePresence>
 
-        <div
-          className={`transition-all duration-500 ${
-            queueOpen ? "flex-1 h-full" : "h-auto max-h-96"
-          }`}
-        >
-          <motion.div
-            key="queue"
-            layout
-            initial={{ opacity: 0, y: 1600 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 1600 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="h-full"
+        {/* Desktop Queue */}
+        {window.innerWidth >= 1280 &&<div className="hidden xl:block">
+          <div
+            className={`transition-all duration-500 ${
+              queueOpen ? "flex-1 h-full" : "h-auto max-h-96"
+            }`}
           >
-            <Queue queueOpen={queueOpen} />
-          </motion.div>
-        </div>
+            <motion.div
+              key="queue"
+              layout
+              initial={{ opacity: 0, y: 1600 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 1600 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="h-full"
+            >
+              <Queue queueOpen={queueOpen} />
+            </motion.div>
+          </div>
+        </div>}
       </div>
 
       {/* Mobile/Tablet Queue Overlay */}
-      <div className="xl:hidden">
-        <Queue queueOpen={queueOpen} />
-      </div>
+      {queueOpen && (
+        <div className="xl:hidden">
+          <Queue queueOpen={queueOpen} />
+        </div>
+      )}
     </div>
   );
 };
