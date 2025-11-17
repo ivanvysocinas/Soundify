@@ -13,7 +13,17 @@ import {
   StepForwardOutlined,
   SwapOutlined,
 } from "@ant-design/icons";
-import { useEffect, useRef, useState, useCallback, useMemo, memo } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  useCallback,
+  useMemo,
+  memo,
+  type Dispatch,
+  type SetStateAction,
+  type FC,
+} from "react";
 import {
   handleTrackEnd,
   playNextTrack,
@@ -61,6 +71,156 @@ const HLS_CONFIG = {
   startPosition: -1,
   maxLoadingDelay: 4,
 } as const;
+
+interface UpgradeModalProps {
+  showUpgradeModal: boolean;
+  setShowUpgradeModal: Dispatch<SetStateAction<boolean>>;
+}
+
+export const UpgradeModal: FC<UpgradeModalProps> = ({showUpgradeModal, setShowUpgradeModal}) => {
+  return (
+    <AnimatePresence>
+      <Modal
+        open={showUpgradeModal}
+        onCancel={() => setShowUpgradeModal(false)}
+        footer={null}
+        centered
+        width={400}
+        closable={false}
+        styles={{
+          mask: {
+            backdropFilter: "blur(8px)",
+            backgroundColor: "rgba(0, 0, 0, 0.6)",
+          },
+          content: {
+            background: "rgba(0, 0, 0, 0.4)",
+            backdropFilter: "blur(20px)",
+            border: "1px solid rgba(255, 255, 255, 0.1)",
+            borderRadius: "16px",
+            padding: 0,
+          },
+        }}
+      >
+        <div className="p-6 text-center">
+          <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+            <svg
+              className="w-8 h-8 text-white"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fillRule="evenodd"
+                d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
+
+          <h3 className="text-xl font-bold text-white mb-2">
+            Upgrade to Premium
+          </h3>
+          <p className="text-white/80 mb-6 text-sm">
+            Upgrade to Premium for unlimited skips, high quality audio, and
+            ad-free experience!
+          </p>
+
+          <div className="mb-6 text-left">
+            <div className="space-y-2">
+              <div className="flex items-center gap-3">
+                <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
+                  <svg
+                    className="w-3 h-3 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <span className="text-white/90 text-sm">
+                  Unlimited track skips
+                </span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
+                  <svg
+                    className="w-3 h-3 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <span className="text-white/90 text-sm">
+                  Full track navigation
+                </span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
+                  <svg
+                    className="w-3 h-3 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <span className="text-white/90 text-sm">
+                  Up to 15 playlists
+                </span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
+                  <svg
+                    className="w-3 h-3 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <span className="text-white/90 text-sm">Priority support</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex gap-3">
+            <button
+              onClick={() => setShowUpgradeModal(false)}
+              className="flex-1 py-3 px-4 bg-white/10 hover:bg-white/20 rounded-lg text-white transition-colors border border-white/20"
+            >
+              Maybe Later
+            </button>
+            <button
+              onClick={() => {
+                setShowUpgradeModal(false);
+                window.location.href = "/upgrade-to-premium";
+              }}
+              className="flex-1 py-3 px-4 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 rounded-lg text-white font-medium transition-all shadow-lg"
+            >
+              Upgrade Now
+            </button>
+          </div>
+        </div>
+      </Modal>
+    </AnimatePresence>
+  );
+};
 
 /**
  * Main desktop audio player with HLS streaming and skip limit logic
@@ -245,6 +405,7 @@ const Player = () => {
     if (isPremium) return;
 
     const syncSkipData = async () => {
+      if (!user) return;
       try {
         const skipData = getSkipData();
         const response = await api.user.syncSkipData(skipData.count);
@@ -323,6 +484,10 @@ const Player = () => {
   }, [dispatch, currentTrack.isPlaying, isLoading]);
 
   const handleSeek = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!canSeek) {
+      setShowUpgradeModal(true);
+      return;
+    }
     const newTime = Number(e.target.value);
     setCurrentTime(newTime);
     if (audioRef.current) {
@@ -784,148 +949,7 @@ const Player = () => {
     <div className="flex flex-col">
       <audio ref={audioRef} preload="metadata" crossOrigin="anonymous" />
 
-      <AnimatePresence>
-        <Modal
-          open={showUpgradeModal}
-          onCancel={() => setShowUpgradeModal(false)}
-          footer={null}
-          centered
-          width={400}
-          closable={false}
-          styles={{
-            mask: {
-              backdropFilter: "blur(8px)",
-              backgroundColor: "rgba(0, 0, 0, 0.6)",
-            },
-            content: {
-              background: "rgba(0, 0, 0, 0.4)",
-              backdropFilter: "blur(20px)",
-              border: "1px solid rgba(255, 255, 255, 0.1)",
-              borderRadius: "16px",
-              padding: 0,
-            },
-          }}
-        >
-          <div className="p-6 text-center">
-            <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-              <svg
-                className="w-8 h-8 text-white"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </div>
-
-            <h3 className="text-xl font-bold text-white mb-2">
-              Upgrade to Premium
-            </h3>
-            <p className="text-white/80 mb-6 text-sm">
-              You've reached your skip limit for this hour. Upgrade to Premium
-              for unlimited skips, high quality audio, and ad-free experience!
-            </p>
-
-            <div className="mb-6 text-left">
-              <div className="space-y-2">
-                <div className="flex items-center gap-3">
-                  <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                    <svg
-                      className="w-3 h-3 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                  <span className="text-white/90 text-sm">
-                    Unlimited track skips
-                  </span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                    <svg
-                      className="w-3 h-3 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                  <span className="text-white/90 text-sm">
-                    Full track navigation
-                  </span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                    <svg
-                      className="w-3 h-3 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                  <span className="text-white/90 text-sm">
-                    Up to 15 playlists
-                  </span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                    <svg
-                      className="w-3 h-3 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                  <span className="text-white/90 text-sm">
-                    Priority support
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex gap-3">
-              <button
-                onClick={() => setShowUpgradeModal(false)}
-                className="flex-1 py-3 px-4 bg-white/10 hover:bg-white/20 rounded-lg text-white transition-colors border border-white/20"
-              >
-                Maybe Later
-              </button>
-              <button
-                onClick={() => {
-                  setShowUpgradeModal(false);
-                  window.location.href = "/upgrade-to-premium";
-                }}
-                className="flex-1 py-3 px-4 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 rounded-lg text-white font-medium transition-all shadow-lg"
-              >
-                Upgrade Now
-              </button>
-            </div>
-          </div>
-        </Modal>
-      </AnimatePresence>
+      <UpgradeModal showUpgradeModal={showUpgradeModal} setShowUpgradeModal={setShowUpgradeModal}></UpgradeModal>
 
       <motion.div
         initial={{ opacity: 0, marginRight: "1000px" }}
@@ -1033,8 +1057,10 @@ const Player = () => {
             max={currentTrackData.duration || 0}
             value={currentTime}
             onChange={handleSeek}
-            disabled={isLoading || !canSeek}
-            className="w-full h-[3px] rounded-lg appearance-none bg-transparent z-10 relative accent-white cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-2 [&::-webkit-slider-thumb]:h-2 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white/90 [&::-webkit-slider-thumb]:shadow focus:outline-none"
+            disabled={isLoading}
+            className={`w-full h-[3px] rounded-lg appearance-none bg-transparent z-10 relative accent-white disabled:cursor-not-allowed disabled:opacity-50 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-2 [&::-webkit-slider-thumb]:h-2 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white/90 [&::-webkit-slider-thumb]:shadow focus:outline-none ${
+              !canSeek ? "cursor-not-allowed" : "cursor-pointer"
+            }`}
           />
           <div className="flex justify-between mt-2 relative z-10">
             <span className="text-[15px] text-white/50 select-none">

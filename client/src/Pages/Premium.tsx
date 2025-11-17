@@ -35,10 +35,6 @@ const Premium = () => {
 
   const isAuthenticated = !!currentUser && !isCurrentUserLoading;
 
-  if (!isAuthenticated && !isCurrentUserLoading) {
-    return <AuthenticationWarning />;
-  }
-
   const premiumFeatures = useMemo(
     () => [
       {
@@ -163,6 +159,10 @@ const Premium = () => {
     },
     [formData, showError, showLoading, showSuccess, dismiss, navigate]
   );
+
+  if (!isAuthenticated && !isCurrentUserLoading) {
+    return <AuthenticationWarning />;
+  }
 
   return (
     <motion.main

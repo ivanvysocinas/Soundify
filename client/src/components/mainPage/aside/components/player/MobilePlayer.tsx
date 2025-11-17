@@ -26,6 +26,7 @@ import { useFormatTime } from "../../../../../hooks/useFormatTime";
 import { useLike } from "../../../../../hooks/useLike";
 import { Link } from "react-router-dom";
 import { useGetUserQuery } from "../../../../../state/UserApi.slice";
+import { UpgradeModal } from "./Player";
 
 const MOBILE_NAV_HEIGHT = 80;
 
@@ -58,6 +59,7 @@ const MobilePlayer = () => {
   const [currentTime, setCurrentTime] = useState(0);
   const [likeHover, setLikeHover] = useState(false);
   const [screenHeight, setScreenHeight] = useState(window.innerHeight);
+  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
 
   const audioElementRef = useRef<HTMLAudioElement | null>(null);
 
@@ -104,14 +106,12 @@ const MobilePlayer = () => {
   }, []);
 
   useEffect(() => {
-    if (!currentTrack.isPlaying || !audioElementRef.current) return;
-
+    if (!currentTrack.isPlaying) return;
     const interval = setInterval(() => {
       if (audioElementRef.current && !audioElementRef.current.paused) {
         setCurrentTime(audioElementRef.current.currentTime);
       }
     }, 100);
-
     return () => clearInterval(interval);
   }, [currentTrack.isPlaying]);
 
@@ -176,6 +176,10 @@ const MobilePlayer = () => {
   );
 
   const handleSeek = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!user || user.status === "USER") {
+      setShowUpgradeModal(true)
+      return
+    }
     const newTime = Number(e.target.value);
     setCurrentTime(newTime);
     if (audioElementRef.current) {
@@ -233,6 +237,11 @@ const MobilePlayer = () => {
             transition={{ duration: 0.1 }}
           />
         </div>
+
+        <UpgradeModal
+          showUpgradeModal={showUpgradeModal}
+          setShowUpgradeModal={setShowUpgradeModal}
+        ></UpgradeModal>
 
         <div
           className="bg-gradient-to-r from-slate-900/98 via-purple-900/95 to-slate-900/98 backdrop-blur-xl border-t border-purple-500/20 p-2.5 cursor-pointer active:scale-[0.98] transition-transform duration-150"
@@ -447,34 +456,40 @@ const MobilePlayer = () => {
                         </Link>
                       </div>
 
-                      {user ? <motion.button
-                        className="p-1"
-                        whileTap={{ scale: 0.9 }}
-                        onMouseEnter={() => setLikeHover(true)}
-                        onMouseLeave={() => setLikeHover(false)}
-                        onClick={() => {
-                          toggleLike;
-                        }}
-                        disabled={likePending}
-                      >
-                        {likePending ? (
-                          <div className="w-5 h-5 border-2 border-purple-400 border-t-transparent rounded-full animate-spin" />
-                        ) : isLiked ? (
-                          <HeartFilled
-                            className={`transition-colors duration-200 ${
-                              isVerySmallScreen ? "text-lg" : "text-xl"
-                            }`}
-                            style={{ color: likeHover ? "#F93822" : "#ef4444" }}
-                          />
-                        ) : (
-                          <HeartOutlined
-                            className={`transition-colors duration-200 ${
-                              isVerySmallScreen ? "text-lg" : "text-xl"
-                            }`}
-                            style={{ color: likeHover ? "#D3D3D3" : "#fff" }}
-                          />
-                        )}
-                      </motion.button> : <div></div>}
+                      {user ? (
+                        <motion.button
+                          className="p-1"
+                          whileTap={{ scale: 0.9 }}
+                          onMouseEnter={() => setLikeHover(true)}
+                          onMouseLeave={() => setLikeHover(false)}
+                          onClick={() => {
+                            toggleLike;
+                          }}
+                          disabled={likePending}
+                        >
+                          {likePending ? (
+                            <div className="w-5 h-5 border-2 border-purple-400 border-t-transparent rounded-full animate-spin" />
+                          ) : isLiked ? (
+                            <HeartFilled
+                              className={`transition-colors duration-200 ${
+                                isVerySmallScreen ? "text-lg" : "text-xl"
+                              }`}
+                              style={{
+                                color: likeHover ? "#F93822" : "#ef4444",
+                              }}
+                            />
+                          ) : (
+                            <HeartOutlined
+                              className={`transition-colors duration-200 ${
+                                isVerySmallScreen ? "text-lg" : "text-xl"
+                              }`}
+                              style={{ color: likeHover ? "#D3D3D3" : "#fff" }}
+                            />
+                          )}
+                        </motion.button>
+                      ) : (
+                        <div></div>
+                      )}
                     </div>
                   </motion.div>
 
@@ -506,8 +521,12 @@ const MobilePlayer = () => {
                         max={currentTrackData.duration || 0}
                         value={currentTime}
                         onChange={handleSeek}
-                        className={`absolute inset-0 w-full opacity-0 cursor-pointer ${
+                        className={`absolute inset-0 w-full opacity-0 ${
                           isVerySmallScreen ? "h-1.5" : "h-2"
+                        } ${
+                          !user || user.status === "USER"
+                            ? " cursor-not-allowed"
+                            : "cursor-pointer"
                         }`}
                       />
                     </div>

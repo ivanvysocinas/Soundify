@@ -1,6 +1,6 @@
 import toast from "react-hot-toast";
 
-interface CustomNotificationOptions {
+export default interface CustomNotificationOptions {
   duration?: number;
   position?:
     | "top-left"

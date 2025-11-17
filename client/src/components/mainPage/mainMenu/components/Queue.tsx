@@ -290,7 +290,7 @@ const Queue = ({ queueOpen }: QueueProps) => {
         <>
           {!isDesktop && window.innerWidth >= 768 && (
             <motion.div
-              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
+              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}

@@ -6,7 +6,7 @@ interface ProfileHeaderProps {
   username: string;
   isLoading: boolean;
   playlists: string[];
-  likedArtists: string[];
+  likedArtists: { _id: string; name: string }[];
 }
 
 /**

@@ -9,7 +9,7 @@ export type User = {
   artistProfile: string | null;
   likedSongs: string[];
   likedPlaylists: string[];
-  likedArtists: {_id: string; name: string}[] | string[];
+  likedArtists: {_id: string; name: string}[];
   isVerified: boolean;
   createdAt: Date;
   updatedAt: Date;

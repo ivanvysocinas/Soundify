@@ -122,7 +122,7 @@ const ProfileContentSlider: FC<ProfileContentSliderProps> = ({
     likedPlaylistsResult.playlists.length;
 
   return (
-    <section
+    playlistsCount !== 0 || likedPlaylistsCount !== 0 ? <section
       className="overflow-hidden"
       aria-labelledby="playlists-section-title"
     >
@@ -251,7 +251,7 @@ const ProfileContentSlider: FC<ProfileContentSliderProps> = ({
           </div>
         </div>
       </div>
-    </section>
+    </section> : <></>
   );
 };
 

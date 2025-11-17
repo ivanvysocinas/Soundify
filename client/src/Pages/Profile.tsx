@@ -82,9 +82,7 @@ export default function Profile() {
               isLoading={isLoading}
               playlists={data?.playlists || []}
               likedArtists={
-                typeof data?.likedArtists === "string"
-                  ? data?.likedArtists || []
-                  : []
+                data?.likedArtists || []
               }
             />
           </div>
