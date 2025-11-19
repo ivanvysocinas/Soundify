@@ -138,7 +138,7 @@ export const SignUpModal: React.FC = () => {
           id={id}
           className={`w-full px-4 py-3 ${
             id === "password" ? "pr-12" : ""
-          } rounded-xl bg-white/10 backdrop-blur-sm border-2 text-white placeholder-purple-200/50 focus:outline-none transition-all duration-300 ${
+          } rounded-xl bg-white/10 border-2 text-white placeholder-purple-200/50 focus:outline-none transition-all duration-300 ${
             errors[id].length > 0
               ? "border-red-400 focus:border-red-300 focus:ring-red-300/20"
               : "border-purple-400/30 focus:border-purple-300 focus:ring-purple-300/20 focus:ring-4"
@@ -224,7 +224,7 @@ export const SignUpModal: React.FC = () => {
         initial={{ opacity: 0, y: 100, scale: 0.9 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.8, type: "spring", damping: 20 }}
-        className="relative w-[900px] bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 flex overflow-hidden"
+        className="relative w-[900px] bg-white/5 rounded-3xl shadow-2xl border border-white/10 flex overflow-hidden"
       >
         <div className="flex-1 p-10">
           <motion.div
@@ -247,7 +247,7 @@ export const SignUpModal: React.FC = () => {
                 animate={{ opacity: 1, height: "auto", scale: 1 }}
                 exit={{ opacity: 0, height: 0, scale: 0.95 }}
                 transition={{ duration: 0.3, type: "spring" }}
-                className="bg-red-500/10 border border-red-500/30 rounded-xl p-4 backdrop-blur-sm"
+                className="bg-red-500/10 border border-red-500/30 rounded-xl p-4"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-5 h-5 rounded-full bg-red-500/20 flex items-center justify-center flex-shrink-0">
@@ -300,7 +300,7 @@ export const SignUpModal: React.FC = () => {
           </form>
         </div>
 
-        <div className="relative w-[46%] flex flex-col justify-center items-center bg-gradient-to-br from-purple-600/30 to-violet-700/30 backdrop-blur-sm">
+        <div className="relative w-[46%] flex flex-col justify-center items-center bg-gradient-to-br from-purple-600/30 to-violet-700/30">
           <motion.div
             className="relative z-10 flex flex-col items-start pl-8 pr-6"
             initial={{ opacity: 0, y: 50 }}
@@ -387,7 +387,7 @@ export const SignUpModal: React.FC = () => {
 
           <motion.button
             onClick={() => navigate("/")}
-            className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all duration-300 flex items-center justify-center group disabled:opacity-50"
+            className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-all duration-300 flex items-center justify-center group disabled:opacity-50"
             whileHover={{ scale: 1.1, rotate: 90 }}
             whileTap={{ scale: 0.9 }}
             initial={{ opacity: 0, rotate: -90 }}

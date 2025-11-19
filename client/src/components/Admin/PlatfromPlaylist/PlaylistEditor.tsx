@@ -216,7 +216,7 @@ const PlaylistEditor: React.FC<PlaylistEditorProps> = ({
           <div className="flex items-center gap-4">
             <button
               onClick={onClose}
-              className="p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-200"
+              className="p-3 rounded-full bg-white/10 border border-white/20 hover:bg-white/20 transition-all duration-200"
             >
               <ArrowLeftOutlined className="text-white text-xl" />
             </button>
@@ -247,7 +247,7 @@ const PlaylistEditor: React.FC<PlaylistEditorProps> = ({
             <button
               onClick={onClose}
               disabled={isSaving || isPublishing}
-              className="px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 text-white rounded-lg transition-all duration-200 disabled:opacity-50"
+              className="px-4 py-2 bg-white/10 border border-white/20 hover:bg-white/20 text-white rounded-lg transition-all duration-200 disabled:opacity-50"
             >
               Cancel
             </button>

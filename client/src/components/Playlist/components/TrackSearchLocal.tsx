@@ -52,7 +52,7 @@ const SearchResultItem: React.FC<SearchResultItemProps> = memo(
     }, []);
 
     return (
-      <div className="flex items-center gap-3 p-3 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:bg-white/10 transition-all duration-200 group">
+      <div className="flex items-center gap-3 p-3 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 transition-all duration-200 group">
         <div className="flex-shrink-0">
           <img
             src={track.coverUrl || "/default-cover.jpg"}
@@ -326,7 +326,7 @@ const TrackSearchLocal: React.FC<TrackSearchLocalProps> = ({
               : "0px",
         }}
       >
-        <div className="bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl shadow-lg">
+        <div className="bg-black/40 border border-white/10 rounded-2xl shadow-lg">
           {searchError ? (
             <div className="p-4 text-center">
               <div className="flex items-center justify-center mb-2">

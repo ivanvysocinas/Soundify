@@ -48,7 +48,7 @@ export default function Login() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, type: "spring" }}
-            className="relative w-[800px] bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 p-12 text-center"
+            className="relative w-[800px] bg-white/5 rounded-3xl shadow-2xl border border-white/10 p-12 text-center"
           >
             <motion.div
               className="absolute inset-0 rounded-3xl overflow-hidden"

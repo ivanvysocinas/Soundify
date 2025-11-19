@@ -94,7 +94,7 @@ const MobileActionsMenu: FC<{
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[9998] md:hidden"
+            className="fixed inset-0 bg-black/30 z-[9998] md:hidden"
             onClick={onClose}
           />
 
@@ -103,7 +103,7 @@ const MobileActionsMenu: FC<{
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
             transition={{ duration: 0.15 }}
-            className="fixed top-20 right-3 w-56 bg-gray-900/98 backdrop-blur-xl rounded-xl border border-white/15 shadow-2xl z-[9999] md:hidden"
+            className="fixed top-20 right-3 w-56 bg-gray-900/98 rounded-xl border border-white/15 shadow-2xl z-[9999] md:hidden"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="py-2 flex flex-col">

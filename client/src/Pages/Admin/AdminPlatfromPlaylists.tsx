@@ -222,7 +222,7 @@ const AdminPlatformPlaylists = () => {
           <div className="flex items-center gap-4">
             <button
               onClick={handleBackClick}
-              className="p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-200"
+              className="p-3 rounded-full bg-white/10 border border-white/20 hover:bg-white/20 transition-all duration-200"
             >
               <ArrowLeftOutlined className="text-white text-xl" />
             </button>
@@ -260,7 +260,7 @@ const AdminPlatformPlaylists = () => {
               placeholder="Search playlists..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:border-white/40 focus:bg-white/15 transition-all duration-200"
+              className="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:border-white/40 focus:bg-white/15 transition-all duration-200"
             />
           </div>
         </motion.div>

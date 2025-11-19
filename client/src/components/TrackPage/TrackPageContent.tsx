@@ -179,7 +179,7 @@ const TrackPageContent = ({ track }: TrackPageContentProps) => {
     typeof track.artist === "string" ? track.artist : track.artist?.name;
 
   return (
-    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-white/20">
+    <div className="bg-white/10 rounded-2xl p-6 sm:p-8 border border-white/20">
       <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
         <div className="w-full max-w-[250px] sm:max-w-[300px] mx-auto lg:mx-0">
           <div className="aspect-square rounded-lg overflow-hidden bg-white/5 border border-white/10 shadow-lg">

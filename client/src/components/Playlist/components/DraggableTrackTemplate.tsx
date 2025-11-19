@@ -273,44 +273,44 @@ const DraggableTrackTemplate: React.FC<DraggableTrackTemplateProps> = ({
       >
         <div className="w-1 h-8 bg-white/10 rounded animate-pulse"></div>
 
-        <div className="h-6 w-6 bg-gradient-to-r from-white/10 via-white/20 to-white/10 backdrop-blur-md border border-white/20 rounded-md relative overflow-hidden mx-auto">
+        <div className="h-6 w-6 bg-gradient-to-r from-white/10 via-white/20 to-white/10 border border-white/20 rounded-md relative overflow-hidden mx-auto">
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 animate-shimmer"></div>
         </div>
 
         <div className="flex items-center gap-2 sm:gap-4 min-w-0">
-          <div className="w-[50px] h-[50px] sm:w-[65px] sm:h-[65px] bg-gradient-to-br from-white/10 via-white/20 to-white/5 backdrop-blur-md border border-white/20 rounded-lg relative overflow-hidden">
+          <div className="w-[50px] h-[50px] sm:w-[65px] sm:h-[65px] bg-gradient-to-br from-white/10 via-white/20 to-white/5 border border-white/20 rounded-lg relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 animate-shimmer"></div>
           </div>
           <div className="flex flex-col justify-center gap-2 min-w-0 flex-1">
-            <div className="h-4 sm:h-5 w-24 sm:w-36 bg-gradient-to-r from-white/10 via-white/20 to-white/10 backdrop-blur-md border border-white/20 rounded-md relative overflow-hidden">
+            <div className="h-4 sm:h-5 w-24 sm:w-36 bg-gradient-to-r from-white/10 via-white/20 to-white/10 border border-white/20 rounded-md relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 animate-shimmer-delayed"></div>
             </div>
-            <div className="h-3 sm:h-4 w-16 sm:w-24 bg-gradient-to-r from-white/8 via-white/15 to-white/8 backdrop-blur-md border border-white/15 rounded-md relative overflow-hidden">
+            <div className="h-3 sm:h-4 w-16 sm:w-24 bg-gradient-to-r from-white/8 via-white/15 to-white/8 border border-white/15 rounded-md relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -skew-x-12 animate-shimmer-delayed-2"></div>
             </div>
           </div>
         </div>
 
         <div className="flex justify-center">
-          <div className="h-4 w-12 sm:w-16 bg-gradient-to-r from-white/8 via-white/15 to-white/8 backdrop-blur-md border border-white/15 rounded-md relative overflow-hidden">
+          <div className="h-4 w-12 sm:w-16 bg-gradient-to-r from-white/8 via-white/15 to-white/8 border border-white/15 rounded-md relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -skew-x-12 animate-shimmer"></div>
           </div>
         </div>
 
         <div className="flex justify-center">
-          <div className="w-4 h-4 sm:w-5 sm:h-5 bg-gradient-to-r from-white/10 via-white/20 to-white/10 backdrop-blur-md border border-white/20 rounded-full relative overflow-hidden">
+          <div className="w-4 h-4 sm:w-5 sm:h-5 bg-gradient-to-r from-white/10 via-white/20 to-white/10 border border-white/20 rounded-full relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 animate-shimmer-delayed-2"></div>
           </div>
         </div>
 
         <div className="flex justify-center">
-          <div className="h-4 w-8 bg-gradient-to-r from-white/8 via-white/15 to-white/8 backdrop-blur-md border border-white/15 rounded-md relative overflow-hidden">
+          <div className="h-4 w-8 bg-gradient-to-r from-white/8 via-white/15 to-white/8 border border-white/15 rounded-md relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -skew-x-12 animate-shimmer"></div>
           </div>
         </div>
 
         <div className="flex justify-center">
-          <div className="w-4 h-4 sm:w-5 sm:h-5 bg-gradient-to-r from-white/10 via-white/20 to-white/10 backdrop-blur-md border border-white/20 rounded-sm relative overflow-hidden">
+          <div className="w-4 h-4 sm:w-5 sm:h-5 bg-gradient-to-r from-white/10 via-white/20 to-white/10 border border-white/20 rounded-sm relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 animate-shimmer-delayed"></div>
           </div>
         </div>

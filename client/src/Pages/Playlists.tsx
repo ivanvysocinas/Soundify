@@ -184,7 +184,7 @@ const AuthRequiredState: React.FC = () => {
                 ease: "easeInOut",
               }}
             />
-            <div className="relative p-6 xs:p-4 bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-lg rounded-2xl border border-purple-500/30">
+            <div className="relative p-6 xs:p-4 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl border border-purple-500/30">
               <FolderOutlined className="text-purple-400 text-6xl xs:text-5xl" />
             </div>
           </div>
@@ -417,11 +417,11 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({
 
   const cardClasses = {
     default:
-      "bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:border-white/20 transition-all duration-300 cursor-pointer group",
+      "bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-white/20 transition-all duration-300 cursor-pointer group",
     featured:
-      "bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-lg border border-purple-300/20 rounded-2xl p-6 hover:border-purple-300/40 transition-all duration-300 cursor-pointer group",
+      "bg-gradient-to-br from-purple-500/20 to-pink-500/20 border border-purple-300/20 rounded-2xl p-6 hover:border-purple-300/40 transition-all duration-300 cursor-pointer group",
     compact:
-      "bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl p-4 hover:border-white/20 transition-all duration-300 cursor-pointer group",
+      "bg-white/5 border border-white/10 rounded-xl p-4 hover:border-white/20 transition-all duration-300 cursor-pointer group",
   };
 
   return (
@@ -607,7 +607,7 @@ const TabNavigation: React.FC<{
   }
 
   return (
-    <div className="flex space-x-1 bg-white/5 backdrop-blur-lg rounded-xl p-1 mb-6 overflow-x-auto">
+    <div className="flex space-x-1 bg-white/5 rounded-xl p-1 mb-6 overflow-x-auto">
       {tabs.map((tab) => (
         <button
           key={tab.id}
@@ -956,7 +956,7 @@ export default function Playlists() {
         >
           <motion.button
             onClick={() => navigate(-1)}
-            className="p-2 xs:p-3 bg-white/10 hover:bg-white/20 backdrop-blur-lg rounded-lg xs:rounded-xl transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white/20 flex-shrink-0"
+            className="p-2 xs:p-3 bg-white/10 hover:bg-white/20 rounded-lg xs:rounded-xl transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white/20 flex-shrink-0"
             whileHover={ANIMATION_CONFIG.buttonHover}
             whileTap={ANIMATION_CONFIG.buttonTap}
             aria-label="Go back"
@@ -966,7 +966,7 @@ export default function Playlists() {
 
           <div className="flex items-center gap-2 xs:gap-3">
             <motion.div
-              className="p-2 xs:p-3 bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-lg rounded-lg xs:rounded-xl border border-purple-500/30"
+              className="p-2 xs:p-3 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-lg xs:rounded-xl border border-purple-500/30"
               initial={{ scale: 0, rotate: -180 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{
@@ -994,7 +994,7 @@ export default function Playlists() {
         </motion.header>
 
         <motion.section
-          className="bg-white/5 md:bg-white/5 md:backdrop-blur-lg border border-white/10 rounded-xl xs:rounded-2xl overflow-hidden flex-1 flex items-center justify-center"
+          className="bg-white/5 md:bg-white/5 border border-white/10 rounded-xl xs:rounded-2xl overflow-hidden flex-1 flex items-center justify-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.2 }}
@@ -1038,7 +1038,7 @@ export default function Playlists() {
               placeholder="Search playlists..."
               value={searchQuery}
               onChange={handleSearchChange}
-              className="w-full bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl py-4 pl-12 pr-6 text-white placeholder-white/50 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all"
+              className="w-full bg-white/10 border border-white/20 rounded-2xl py-4 pl-12 pr-6 text-white placeholder-white/50 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all"
             />
             {isSearching && (
               <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
@@ -1114,7 +1114,7 @@ export default function Playlists() {
               {Array.from({ length: 8 }).map((_, index) => (
                 <div
                   key={index}
-                  className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 animate-pulse"
+                  className="bg-white/5 border border-white/10 rounded-2xl p-6 animate-pulse"
                 >
                   <div className="aspect-square bg-white/10 rounded-xl mb-4" />
                   <div className="space-y-3">
@@ -1190,7 +1190,7 @@ export default function Playlists() {
             animate={{ opacity: 1 }}
             className="text-center mt-12"
           >
-            <button className="px-8 py-3 bg-white/10 hover:bg-white/20 text-white rounded-xl font-medium transition-colors backdrop-blur-lg border border-white/20">
+            <button className="px-8 py-3 bg-white/10 hover:bg-white/20 text-white rounded-xl font-medium transition-colors border border-white/20">
               Load More Playlists
             </button>
           </motion.div>

@@ -78,7 +78,7 @@ export const useNotification = () => {
         <div
           className={`${
             t.visible ? "animate-enter" : "animate-leave"
-          } max-w-md w-full bg-red-500/10 backdrop-blur-lg border border-red-500/30 shadow-lg rounded-xl pointer-events-auto flex ring-1 ring-red-500/20`}
+          } max-w-md w-full bg-red-500/10 border border-red-500/30 shadow-lg rounded-xl pointer-events-auto flex ring-1 ring-red-500/20`}
         >
           <div className="flex-1 w-0 p-4">
             <div className="flex items-start">

@@ -1,4 +1,4 @@
-import { memo, useState, useRef, useEffect, useMemo } from "react";
+import { memo, useState, useRef, useEffect, useMemo, useCallback } from "react";
 import { createPortal } from "react-dom";
 import {
   HeartOutlined,
@@ -10,6 +10,7 @@ import {
   ShareAltOutlined,
   DeleteOutlined,
 } from "@ant-design/icons";
+import { motion, type PanInfo } from "framer-motion";
 
 interface ContextMenuProps {
   isOpen: boolean;
@@ -40,14 +41,14 @@ const ContextMenu = ({
 }: ContextMenuProps) => {
   const [hoveredMenuItem, setHoveredMenuItem] = useState<number | null>(null);
   const [position, setPosition] = useState({ top: 0, left: 0 });
-  const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+    const checkTablet = () => setIsTablet(window.innerWidth < 1280);
+    checkTablet();
+    window.addEventListener("resize", checkTablet);
+    return () => window.removeEventListener("resize", checkTablet);
   }, []);
 
   const baseMenuItems = useMemo(
@@ -108,7 +109,7 @@ const ContextMenu = ({
   );
 
   useEffect(() => {
-    if (isOpen && usePortal && anchorRef.current && !isMobile) {
+    if (isOpen && usePortal && anchorRef.current && !isTablet) {
       const visibleItems = menuItems.filter(
         (item) => !isPlaying || item.label !== "Add to queue"
       );
@@ -132,7 +133,7 @@ const ContextMenu = ({
 
       setPosition({ top, left });
     }
-  }, [isOpen, usePortal, anchorRef, isPlaying, isMobile, menuItems]);
+  }, [isOpen, usePortal, anchorRef, isPlaying, isTablet, menuItems]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -147,7 +148,7 @@ const ContextMenu = ({
     };
 
     const handleScroll = () => {
-      if (usePortal && !isMobile) {
+      if (usePortal && !isTablet) {
         onClose();
       }
     };
@@ -160,7 +161,7 @@ const ContextMenu = ({
 
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
-      if (usePortal && !isMobile) {
+      if (usePortal && !isTablet) {
         document.addEventListener("scroll", handleScroll, true);
       }
       document.addEventListener("keydown", handleEscape);
@@ -168,12 +169,12 @@ const ContextMenu = ({
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
-      if (usePortal && !isMobile) {
+      if (usePortal && !isTablet) {
         document.removeEventListener("scroll", handleScroll, true);
       }
       document.removeEventListener("keydown", handleEscape);
     };
-  }, [isOpen, onClose, anchorRef, usePortal, isMobile]);
+  }, [isOpen, onClose, anchorRef, usePortal, isTablet]);
 
   const handleMenuItemClick = (index: number, disabled: boolean) => {
     if (disabled) return;
@@ -181,19 +182,44 @@ const ContextMenu = ({
     onClose();
   };
 
+  const handleDragEnd = useCallback(
+    (_event: any, info: PanInfo) => {
+      if (info.offset.y > 100 || info.velocity.y > 500) {
+        onClose();
+      }
+    },
+    [onClose]
+  );
+
   if (!isOpen) return null;
 
-  if (isMobile) {
+  if (isTablet) {
     const content = (
       <div className="fixed inset-0 z-[9999] flex items-end">
-        <div
-          className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+        <motion.div
+          className="absolute inset-0 bg-black/40 backdrop-blur-xl"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           onClick={onClose}
         />
 
-        <div
+        <motion.div
           ref={menuRef}
-          className="relative w-full bg-black/50 backdrop-blur-xl border-t border-white/20 rounded-t-3xl overflow-hidden animate-slide-up"
+          className="relative w-full bg-black/50 border-t border-white/20 rounded-t-3xl overflow-hidden animate-slide-up backdrop-blur-xl"
+          initial={{ y: "100%", opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: "100%", opacity: 0 }}
+          transition={{
+            type: "spring",
+            damping: 25,
+            stiffness: 200,
+            duration: 0.4,
+          }}
+          drag="y"
+          dragConstraints={{ top: 0, bottom: 0 }}
+          dragElastic={0.1}
+          onDragEnd={handleDragEnd}
         >
           <div className="flex justify-center py-3">
             <div className="w-12 h-1 bg-white/30 rounded-full" />
@@ -242,7 +268,7 @@ const ContextMenu = ({
                 );
               })}
           </div>
-        </div>
+        </motion.div>
       </div>
     );
 
@@ -252,7 +278,7 @@ const ContextMenu = ({
   const content = (
     <div
       ref={menuRef}
-      className={`min-w-[220px] bg-black/30 backdrop-blur-md border border-white/20 rounded-lg shadow-2xl overflow-hidden ${
+      className={`min-w-[220px] bg-black/30 border border-white/20 rounded-lg shadow-2xl overflow-hidden ${
         usePortal ? "fixed" : "absolute bottom-full right-0 mb-2"
       }`}
       style={

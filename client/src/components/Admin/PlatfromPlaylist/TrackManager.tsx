@@ -238,7 +238,7 @@ const TrackManager: React.FC<TrackManagerProps> = ({
               value={searchQuery}
               onChange={handleSearchChange}
               placeholder="Search tracks, artists, albums..."
-              className="w-full pl-12 pr-4 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:border-white/40 focus:bg-white/15 transition-all duration-200"
+              className="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:border-white/40 focus:bg-white/15 transition-all duration-200"
             />
           </div>
 

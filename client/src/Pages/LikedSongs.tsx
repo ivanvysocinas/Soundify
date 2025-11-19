@@ -132,7 +132,7 @@ const AuthRequiredState: React.FC = () => {
               }}
               aria-hidden="true"
             />
-            <div className="relative p-6 xs:p-4 bg-gradient-to-br from-red-500/20 to-pink-500/20 backdrop-blur-lg rounded-2xl border border-red-500/30">
+            <div className="relative p-6 xs:p-4 bg-gradient-to-br from-red-500/20 to-pink-500/20 rounded-2xl border border-red-500/30">
               <HeartFilled className="text-red-400 text-6xl xs:text-5xl" />
             </div>
           </div>
@@ -344,7 +344,7 @@ export default function LikedSongs() {
         >
           <motion.button
             onClick={() => navigate(-1)}
-            className="p-2 xs:p-3 bg-white/10 hover:bg-white/20 backdrop-blur-lg rounded-lg xs:rounded-xl transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white/20 flex-shrink-0"
+            className="p-2 xs:p-3 bg-white/10 hover:bg-white/20 rounded-lg xs:rounded-xl transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white/20 flex-shrink-0"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             aria-label="Go back to previous page"
@@ -354,7 +354,7 @@ export default function LikedSongs() {
 
           <div className="flex items-center gap-2 xs:gap-3">
             <motion.div
-              className="p-2 xs:p-3 bg-gradient-to-br from-red-500/20 to-pink-500/20 backdrop-blur-lg rounded-lg xs:rounded-xl border border-red-500/30"
+              className="p-2 xs:p-3 bg-gradient-to-br from-red-500/20 to-pink-500/20 rounded-lg xs:rounded-xl border border-red-500/30"
               initial={{ scale: 0, rotate: -180 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{
@@ -382,7 +382,7 @@ export default function LikedSongs() {
         </motion.header>
 
         <motion.section
-          className="bg-white/5 md:bg-white/5 md:backdrop-blur-lg border border-white/10 rounded-xl xs:rounded-2xl overflow-hidden flex-1 flex items-center justify-center"
+          className="bg-white/5 md:bg-white/5 border border-white/10 rounded-xl xs:rounded-2xl overflow-hidden flex-1 flex items-center justify-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.2 }}

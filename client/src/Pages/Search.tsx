@@ -325,7 +325,7 @@ const Search = () => {
                 <h2 className="text-white text-base sm:text-lg font-semibold mb-2 sm:mb-3 px-1">
                   Top Result
                 </h2>
-                <div className="bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 max-w-xs sm:max-w-sm border border-white/10">
+                <div className="bg-white/5 rounded-lg sm:rounded-xl p-3 sm:p-4 max-w-xs sm:max-w-sm border border-white/10">
                   <SearchItem
                     item={searchResults.tracks[0]}
                     type="track"
@@ -432,7 +432,7 @@ const Search = () => {
       >
         <motion.button
           onClick={() => navigate("/")}
-          className="p-2.5 sm:p-3 bg-white/10 hover:bg-white/20 backdrop-blur-lg rounded-lg sm:rounded-xl transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white/20 flex-shrink-0"
+          className="p-2.5 sm:p-3 bg-white/10 hover:bg-white/20 rounded-lg sm:rounded-xl transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white/20 flex-shrink-0"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           aria-label="Go back to home"
@@ -460,7 +460,7 @@ const Search = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.2 }}
       >
-        <div className="flex items-center w-full max-w-2xl bg-white/10 backdrop-blur-lg rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 border border-white/20">
+        <div className="flex items-center w-full max-w-2xl bg-white/10 rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 border border-white/20">
           <SearchOutlined
             className="text-white/70 mr-2 sm:mr-3 flex-shrink-0"
             style={{ fontSize: window.innerWidth < 640 ? "16px" : "18px" }}

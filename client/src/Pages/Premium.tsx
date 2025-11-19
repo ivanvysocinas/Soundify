@@ -179,7 +179,7 @@ const Premium = () => {
       >
         <motion.button
           onClick={() => navigate("/")}
-          className="p-3 bg-white/10 hover:bg-white/20 backdrop-blur-lg rounded-xl transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white/20"
+          className="p-3 bg-white/10 hover:bg-white/20 rounded-xl transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white/20"
           aria-label="Go back to home"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -189,7 +189,7 @@ const Premium = () => {
 
         <div className="flex items-center gap-3">
           <motion.div
-            className="p-3 bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-lg rounded-xl border border-purple-500/30"
+            className="p-3 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-xl border border-purple-500/30"
             initial={{ scale: 0, rotate: -180 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{
@@ -229,7 +229,7 @@ const Premium = () => {
           transition={{ duration: 0.6, delay: 0.6 }}
         >
           <motion.div
-            className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6"
+            className="bg-white/5 border border-white/10 rounded-2xl p-6"
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.2 }}
           >
@@ -247,7 +247,7 @@ const Premium = () => {
               {premiumFeatures.map((feature, index) => (
                 <motion.div
                   key={index}
-                  className="p-4 bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl hover:bg-white/10 transition-all duration-200"
+                  className="p-4 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-all duration-200"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
@@ -302,7 +302,7 @@ const Premium = () => {
           </motion.div>
 
           <motion.div
-            className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-lg border border-purple-500/30 rounded-2xl p-6"
+            className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/30 rounded-2xl p-6"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 1.2 }}
@@ -362,7 +362,7 @@ const Premium = () => {
         </motion.div>
 
         <motion.div
-          className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6"
+          className="bg-white/5 border border-white/10 rounded-2xl p-6"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
@@ -393,7 +393,7 @@ const Premium = () => {
                 value={formData.email}
                 onChange={handleInputChange}
                 placeholder="your@email.com"
-                className="w-full px-4 py-3 bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all duration-200"
+                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all duration-200"
                 required
                 whileFocus={{ scale: 1.02 }}
               />
@@ -413,7 +413,7 @@ const Premium = () => {
                 value={formData.cardNumber}
                 onChange={handleInputChange}
                 placeholder="1234 5678 9012 3456"
-                className="w-full px-4 py-3 bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all duration-200"
+                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all duration-200"
                 required
                 whileFocus={{ scale: 1.02 }}
               />
@@ -435,7 +435,7 @@ const Premium = () => {
                   value={formData.expiryDate}
                   onChange={handleInputChange}
                   placeholder="MM/YY"
-                  className="w-full px-4 py-3 bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all duration-200"
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all duration-200"
                   required
                   whileFocus={{ scale: 1.02 }}
                 />
@@ -450,7 +450,7 @@ const Premium = () => {
                   value={formData.cvv}
                   onChange={handleInputChange}
                   placeholder="123"
-                  className="w-full px-4 py-3 bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all duration-200"
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all duration-200"
                   required
                   whileFocus={{ scale: 1.02 }}
                 />
@@ -471,7 +471,7 @@ const Premium = () => {
                 value={formData.cardholderName}
                 onChange={handleInputChange}
                 placeholder="John Doe"
-                className="w-full px-4 py-3 bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all duration-200"
+                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all duration-200"
                 required
                 whileFocus={{ scale: 1.02 }}
               />

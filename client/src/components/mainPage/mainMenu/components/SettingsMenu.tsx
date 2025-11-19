@@ -32,7 +32,7 @@ type UserRole = "user" | "artist" | "premium" | "admin";
 const MenuItem = memo<MenuItemProps>(
   ({ icon, label, onClick, className = "" }) => (
     <motion.div
-      className={`flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 hover:backdrop-blur-md hover:bg-white/10 hover:scale-[1.02] ${className}`}
+      className={`flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 hover:bg-white/10 hover:scale-[1.02] ${className}`}
       onClick={onClick}
       whileHover={{ x: 4 }}
       whileTap={{ scale: 0.98 }}

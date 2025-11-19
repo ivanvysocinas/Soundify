@@ -19,7 +19,7 @@ const AuthenticationWarning: React.FC = () => {
       >
 
         {/* Main content card */}
-        <div className="relative z-10 bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 sm:p-10 shadow-2xl">
+        <div className="relative z-10 bg-white/10 border border-white/20 rounded-3xl p-8 sm:p-10 shadow-2xl">
           {/* Lock icon with animation */}
           <motion.div
             className="relative mb-6 flex justify-center"
@@ -45,7 +45,7 @@ const AuthenticationWarning: React.FC = () => {
                   ease: "easeInOut",
                 }}
               />
-              <div className="relative w-20 h-20 bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-lg rounded-2xl border border-purple-500/30 flex items-center justify-center">
+              <div className="relative w-20 h-20 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl border border-purple-500/30 flex items-center justify-center">
                 <LockOutlined className="text-purple-400 text-4xl" />
               </div>
             </div>

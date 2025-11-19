@@ -132,7 +132,7 @@ const AuthRequiredState: React.FC = () => {
                 ease: "easeInOut",
               }}
             />
-            <div className="relative p-6 xs:p-4 bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-lg rounded-2xl border border-purple-500/30">
+            <div className="relative p-6 xs:p-4 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl border border-purple-500/30">
               <FolderOutlined className="text-purple-400 text-6xl xs:text-5xl" />
             </div>
           </div>
@@ -558,7 +558,7 @@ export default function Playlist() {
         >
           <motion.button
             onClick={() => navigate(-1)}
-            className="p-2 xs:p-3 bg-white/10 hover:bg-white/20 backdrop-blur-lg rounded-lg xs:rounded-xl transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white/20 flex-shrink-0"
+            className="p-2 xs:p-3 bg-white/10 hover:bg-white/20 rounded-lg xs:rounded-xl transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white/20 flex-shrink-0"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             aria-label="Go back"
@@ -568,7 +568,7 @@ export default function Playlist() {
 
           <div className="flex items-center gap-2 xs:gap-3">
             <motion.div
-              className="p-2 xs:p-3 bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-lg rounded-lg xs:rounded-xl border border-purple-500/30"
+              className="p-2 xs:p-3 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-lg xs:rounded-xl border border-purple-500/30"
               initial={{ scale: 0, rotate: -180 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{
@@ -596,7 +596,7 @@ export default function Playlist() {
         </motion.header>
 
         <motion.section
-          className="bg-white/5 md:bg-white/5 md:backdrop-blur-lg border border-white/10 rounded-xl xs:rounded-2xl overflow-hidden flex-1 flex items-center justify-center"
+          className="bg-white/5 md:bg-white/5 border border-white/10 rounded-xl xs:rounded-2xl overflow-hidden flex-1 flex items-center justify-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.2 }}
@@ -651,7 +651,7 @@ export default function Playlist() {
   if (error && user) {
     return (
       <div className="h-screen w-full mainMenu mb-35 xl:mb-5 pl-4 xl:pl-[22vw] pr-[2vw] flex items-center justify-center">
-        <div className="text-center bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 max-w-md w-full">
+        <div className="text-center bg-white/10 rounded-2xl p-8 border border-white/20 max-w-md w-full">
           <div className="w-16 h-16 mx-auto rounded-full bg-red-500/20 flex items-center justify-center mb-4">
             <svg
               className="w-8 h-8 text-red-400"
@@ -690,7 +690,7 @@ export default function Playlist() {
 
       {(hasUnsavedChanges || selectedCoverFile) && canEditPlaylist && (
         <div className="fixed bottom-8 right-8 z-50">
-          <div className="flex items-center gap-3 p-4 bg-black/80 backdrop-blur-lg border border-white/20 rounded-2xl shadow-2xl">
+          <div className="flex items-center gap-3 p-4 bg-black/80 border border-white/20 rounded-2xl shadow-2xl">
             <div className="flex items-center gap-2 text-white/80 text-sm">
               <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
               <span>
@@ -746,7 +746,7 @@ export default function Playlist() {
 
       {!canEditPlaylist && playlist && (
         <div className="fixed bottom-8 right-8 z-40">
-          <div className="flex items-center gap-2 p-3 bg-blue-500/20 backdrop-blur-lg border border-blue-500/30 rounded-lg text-blue-400 text-sm">
+          <div className="flex items-center gap-2 p-3 bg-blue-500/20 border border-blue-500/30 rounded-lg text-blue-400 text-sm">
             <svg
               className="w-4 h-4"
               fill="none"

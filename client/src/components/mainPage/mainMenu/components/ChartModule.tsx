@@ -27,7 +27,7 @@ const ChartModule = ({ chartImage }: ChartModuleProps) => {
       </h1>
 
       <motion.div
-        className="bg-gradient-to-br from-[#1db954]/20 to-[#191414]/40 backdrop-blur-sm rounded-2xl p-4 md:p-6 border border-white/10 cursor-pointer transition-all duration-300"
+        className="bg-gradient-to-br from-[#1db954]/20 to-[#191414]/40 rounded-2xl p-4 md:p-6 border border-white/10 cursor-pointer transition-all duration-300"
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         onClick={handleNavigate}

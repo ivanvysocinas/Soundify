@@ -160,7 +160,7 @@ const ArtistCard: React.FC<ArtistCardProps> = ({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       whileHover={{ y: -5 }}
-      className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:border-white/20 transition-all duration-300 cursor-pointer group"
+      className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-white/20 transition-all duration-300 cursor-pointer group"
       onClick={handleArtistClick}
     >
       <div className="flex items-start gap-4 mb-4">
@@ -535,7 +535,7 @@ export default function Artists() {
               placeholder="Search artists..."
               value={searchQuery}
               onChange={handleSearchChange}
-              className="w-full bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl py-4 pl-12 pr-6 text-white placeholder-white/50 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all"
+              className="w-full bg-white/10 border border-white/20 rounded-2xl py-4 pl-12 pr-6 text-white placeholder-white/50 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all"
             />
             {isSearching && (
               <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
@@ -595,7 +595,7 @@ export default function Artists() {
               {Array.from({ length: 8 }).map((_, index) => (
                 <div
                   key={index}
-                  className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 animate-pulse"
+                  className="bg-white/5 border border-white/10 rounded-2xl p-6 animate-pulse"
                 >
                   <div className="flex items-start gap-4 mb-4">
                     <div className="w-16 h-16 bg-white/10 rounded-full" />
@@ -663,7 +663,7 @@ export default function Artists() {
             animate={{ opacity: 1 }}
             className="text-center mt-12"
           >
-            <button className="px-8 py-3 bg-white/10 hover:bg-white/20 text-white rounded-xl font-medium transition-colors backdrop-blur-lg border border-white/20">
+            <button className="px-8 py-3 bg-white/10 hover:bg-white/20 text-white rounded-xl font-medium transition-colors border border-white/20">
               Load More Artists
             </button>
           </motion.div>

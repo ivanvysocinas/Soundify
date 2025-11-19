@@ -95,7 +95,7 @@ const PlaylistForm: React.FC<PlaylistFormProps> = ({
   }, [tracks]);
 
   return (
-    <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6">
+    <div className="bg-white/10 border border-white/20 rounded-2xl p-6">
       <h2 className="text-xl font-semibold text-white mb-6">
         Playlist Details
       </h2>
@@ -156,7 +156,7 @@ const PlaylistForm: React.FC<PlaylistFormProps> = ({
               value={formData.name}
               onChange={(e) => handleInputChange("name", e.target.value)}
               placeholder="Enter playlist name"
-              className="w-full px-3 xs:px-4 py-2.5 xs:py-3 bg-white/10 md:backdrop-blur-md border border-white/20 rounded-lg xs:rounded-xl text-white placeholder-white/60 focus:outline-none focus:border-white/40 focus:bg-white/5 transition-all duration-200 text-sm xs:text-base"
+              className="w-full px-3 xs:px-4 py-2.5 xs:py-3 bg-white/10 border border-white/20 rounded-lg xs:rounded-xl text-white placeholder-white/60 focus:outline-none focus:border-white/40 focus:bg-white/5 transition-all duration-200 text-sm xs:text-base"
             />
           ) : (
             <div className="text-white text-lg font-medium">
@@ -175,7 +175,7 @@ const PlaylistForm: React.FC<PlaylistFormProps> = ({
               onChange={(e) => handleInputChange("description", e.target.value)}
               placeholder="Describe your playlist..."
               rows={3}
-              className="w-full px-3 xs:px-4 py-2.5 xs:py-3 bg-white/10 md:backdrop-blur-md border border-white/20 rounded-lg xs:rounded-xl text-white placeholder-white/60 focus:outline-none focus:border-white/40 focus:bg-white/5 transition-all duration-200 resize-none text-sm xs:text-base"
+              className="w-full px-3 xs:px-4 py-2.5 xs:py-3 bg-white/10 border border-white/20 rounded-lg xs:rounded-xl text-white placeholder-white/60 focus:outline-none focus:border-white/40 focus:bg-white/5 transition-all duration-200 resize-none text-sm xs:text-base"
             />
           ) : (
             <div className="text-white/80">

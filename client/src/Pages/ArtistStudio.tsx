@@ -270,7 +270,7 @@ export default function ArtistStudio() {
 
         <div className="w-full px-4 xl:px-0 xl:pl-[22vw] xl:pr-[2vw] pb-36 xl:pb-8">
           <div className="space-y-6">
-            <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6">
+            <div className="bg-white/5 border border-white/10 rounded-3xl p-6">
               <div className="space-y-4">
                 <div className="h-6 bg-white/20 rounded-lg w-48 animate-pulse"></div>
                 <div className="h-4 bg-white/15 rounded w-full animate-pulse"></div>
@@ -282,7 +282,7 @@ export default function ArtistStudio() {
               {[1, 2, 3].map((i) => (
                 <div
                   key={i}
-                  className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4"
+                  className="bg-white/5 border border-white/10 rounded-xl p-4"
                 >
                   <div className="h-6 bg-white/20 rounded-lg w-32 mb-4 animate-pulse"></div>
                   <div className="space-y-3">
@@ -297,7 +297,7 @@ export default function ArtistStudio() {
               {[1, 2].map((i) => (
                 <div
                   key={i}
-                  className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6"
+                  className="bg-white/5 border border-white/10 rounded-3xl p-6"
                 >
                   <div className="h-6 bg-white/20 rounded-lg w-32 mb-4 animate-pulse"></div>
                   <div className="space-y-3">
@@ -330,7 +330,7 @@ export default function ArtistStudio() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6"
+          className="bg-white/5 border border-white/10 rounded-3xl p-6"
         >
           <div className="flex items-center gap-3 mb-4">
             <div className="w-2 h-8 bg-gradient-to-b from-[#1db954] to-[#1ed760] rounded-full"></div>
@@ -437,7 +437,7 @@ export default function ArtistStudio() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4 }}
-            className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6"
+            className="bg-white/5 border border-white/10 rounded-3xl p-6"
           >
             <div className="flex items-center gap-3 mb-4">
               <div className="w-2 h-2 bg-green-400 rounded-full"></div>
@@ -498,7 +498,7 @@ export default function ArtistStudio() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.6 }}
-            className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6"
+            className="bg-white/5 border border-white/10 rounded-3xl p-6"
           >
             <div className="flex items-center gap-3 mb-4">
               <div className="w-2 h-2 bg-purple-400 rounded-full"></div>

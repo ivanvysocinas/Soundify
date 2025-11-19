@@ -290,7 +290,7 @@ const Queue = ({ queueOpen }: QueueProps) => {
         <>
           {!isDesktop && window.innerWidth >= 768 && (
             <motion.div
-              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50"
+              className="fixed inset-0 bg-black/40 z-50"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -299,7 +299,7 @@ const Queue = ({ queueOpen }: QueueProps) => {
           )}
 
           <motion.div
-            className={`fixed z-50 flex flex-col ${
+            className={`fixed z-50 flex flex-col backdrop-blur-xl ${
               window.innerWidth < 768 ? "inset-0" : "inset-y-0 right-0 w-[60%]"
             }`}
             initial={{ x: "100%", opacity: 0 }}
@@ -316,7 +316,7 @@ const Queue = ({ queueOpen }: QueueProps) => {
             dragElastic={0.1}
             onDragEnd={handleDragEnd}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a2e]/95 via-[#16213e]/90 to-[#0f0f23]/95 backdrop-blur-xl" />
+            <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a2e]/95 via-[#16213e]/90 to-[#0f0f23]/95" />
 
             {window.innerWidth < 768 && (
               <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-white/30 rounded-full" />

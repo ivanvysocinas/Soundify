@@ -157,7 +157,7 @@ export default function Recently() {
           >
             <motion.div
               whileHover={{ y: -5, scale: 1.02 }}
-              className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:border-white/20 transition-all duration-300"
+              className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-white/20 transition-all duration-300"
             >
               <div className="mb-4">
                 <PlayCircleOutlined
@@ -177,7 +177,7 @@ export default function Recently() {
 
             <motion.div
               whileHover={{ y: -5, scale: 1.02 }}
-              className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:border-white/20 transition-all duration-300"
+              className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-white/20 transition-all duration-300"
             >
               <div className="mb-4">
                 <ClockCircleOutlined
@@ -195,7 +195,7 @@ export default function Recently() {
 
             <motion.div
               whileHover={{ y: -5, scale: 1.02 }}
-              className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:border-white/20 transition-all duration-300"
+              className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-white/20 transition-all duration-300"
             >
               <div className="mb-4">
                 <HeartOutlined

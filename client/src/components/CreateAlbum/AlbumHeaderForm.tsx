@@ -222,7 +222,7 @@ const AlbumHeaderForm: React.FC<AlbumHeaderFormProps> = ({
   };
 
   return (
-    <div className="bg-white/5 backdrop-blur-md rounded-lg lg:rounded-2xl p-4 lg:p-6 border border-white/10">
+    <div className="bg-white/5 rounded-lg lg:rounded-2xl p-4 lg:p-6 border border-white/10">
       <h2 className="text-lg lg:text-xl font-semibold text-white mb-4 lg:mb-6">
         Album Information
       </h2>

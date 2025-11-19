@@ -88,7 +88,7 @@ const PlaylistCard = ({ playlist }: PlaylistCardProps) => {
       onMouseLeave={() => setHover(false)}
       onClick={handleNavigate}
     >
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 backdrop-blur-[1px]" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
 
       <div className="absolute inset-0 flex items-end justify-between p-6">
         <div className="flex flex-col gap-2">

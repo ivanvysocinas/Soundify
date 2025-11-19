@@ -30,7 +30,6 @@
   display: inline;
 }
 .queue-scroll {
-  max-height: 27.5vh;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #575757 #181818;

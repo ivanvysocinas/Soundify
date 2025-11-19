@@ -317,7 +317,7 @@ const TrackTemplate: FC<TrackTemplateProps> = ({
 
   return (
     <div
-      className="grid grid-cols-[10px_1.47fr_1fr_0.1fr_0.1fr_40px] md:grid-cols-[20px_1.47fr_1fr_0.1fr_0.1fr_40px] xl:grid-cols-[50px_1.47fr_1.57fr_0.8fr_50px_80px_50px] gap-2 sm:gap-4 items-center px-2 sm:px-4 py-3 hover:bg-white/5 rounded-lg transition-colors duration-200 group cursor-pointer"
+      className="grid grid-cols-[10px_1.47fr_0.3fr_0.1fr_0.1fr_40px] md:grid-cols-[20px_1.47fr_1fr_0.1fr_0.1fr_40px] xl:grid-cols-[50px_1.47fr_1.57fr_0.8fr_50px_80px_50px] gap-2 sm:gap-4 items-center px-2 sm:px-4 py-3 hover:bg-white/5 rounded-lg transition-colors duration-200 group cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={isMenuOpen ? () => {} : playTrackWithContext}
@@ -462,7 +462,7 @@ const TrackTemplate: FC<TrackTemplateProps> = ({
           onClick={handleEllipsisClick}
           className="transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white/20 rounded-full p-1"
           style={{
-            opacity: isHovered ? 1 : 0,
+            opacity: isHovered || window.innerWidth < 1280 ? 1 : 0,
           }}
           aria-label="Track options"
           aria-expanded={isMenuOpen}

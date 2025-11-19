@@ -20,7 +20,7 @@ import {
   toggleRepeat,
   toggleShuffle,
 } from "../../../../../state/Queue.slice";
-import { useCallback, useState, useEffect, useRef, memo } from "react";
+import { useCallback, useState, useEffect, useRef, memo, useMemo } from "react";
 import { motion, AnimatePresence, type PanInfo } from "framer-motion";
 import { useFormatTime } from "../../../../../hooks/useFormatTime";
 import { useLike } from "../../../../../hooks/useLike";
@@ -43,14 +43,76 @@ const COVER_SIZES = {
   LARGE: "360px",
 } as const;
 
+const selectCurrentTrack = (state: AppState) => state.currentTrack;
+const selectQueueState = (state: AppState) => state.queue;
+
+/**
+ * Progressbar component with optimized re-renders
+ */
+
+const ProgressBar = memo(
+  ({
+    currentTime,
+    duration,
+    onSeek,
+    isCompact = false,
+    canSeek = true,
+  }: {
+    currentTime: number;
+    duration: number;
+    onSeek: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    isCompact?: boolean;
+    canSeek?: boolean;
+  }) => {
+    const progress = duration ? (currentTime / duration) * 100 : 0;
+
+    if (isCompact) {
+      return (
+        <div className="relative h-0.5 bg-gradient-to-r from-transparent via-purple-500/20 to-transparent">
+          <div
+            className="absolute top-0 left-0 h-full bg-gradient-to-r from-purple-400 via-pink-400 to-purple-600 shadow-sm shadow-purple-500/30 transition-all duration-100"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
+      );
+    }
+
+    return (
+      <div className="relative mb-2">
+        <div className="w-full bg-white/20 rounded-full overflow-hidden h-2">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+          <div
+            className="h-full bg-gradient-to-r from-purple-400 via-pink-400 to-purple-600 rounded-full relative overflow-hidden transition-all duration-100"
+            style={{ width: `${progress}%` }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+          </div>
+        </div>
+        <input
+          type="range"
+          min={0}
+          max={duration || 0}
+          value={currentTime}
+          onChange={onSeek}
+          className={`absolute inset-0 w-full opacity-0 h-2 ${
+            !canSeek ? "cursor-not-allowed" : "cursor-pointer"
+          }`}
+        />
+      </div>
+    );
+  }
+);
+
+ProgressBar.displayName = "ProgressBar";
+
 /**
  * Mobile player component with compact and expanded views
- * Features adaptive layout, swipe gestures, and glassmorphism effects
+ * Features adaptive layout, swipe gestures, and optimized rendering
  */
 const MobilePlayer = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const currentTrack = useSelector((state: AppState) => state.currentTrack);
-  const queueState = useSelector((state: AppState) => state.queue);
+  const currentTrack = useSelector(selectCurrentTrack);
+  const queueState = useSelector(selectQueueState);
 
   const { data: user } = useGetUserQuery();
 
@@ -62,17 +124,25 @@ const MobilePlayer = () => {
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
 
   const audioElementRef = useRef<HTMLAudioElement | null>(null);
+  const animationFrameRef = useRef<number>(0);
+
+  const screenMetrics = useMemo(() => {
+    const availableHeight = screenHeight - MOBILE_NAV_HEIGHT;
+    return {
+      availableHeight,
+      isVerySmallScreen: availableHeight < SCREEN_BREAKPOINTS.VERY_SMALL,
+      isSmallScreen: availableHeight < SCREEN_BREAKPOINTS.SMALL,
+      isMediumScreen: availableHeight < SCREEN_BREAKPOINTS.MEDIUM,
+    };
+  }, [screenHeight]);
+
+  const { isVerySmallScreen, isSmallScreen, isMediumScreen } = screenMetrics;
 
   useEffect(() => {
     const handleResize = () => setScreenHeight(window.innerHeight);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-  const availableHeight = screenHeight - MOBILE_NAV_HEIGHT;
-  const isVerySmallScreen = availableHeight < SCREEN_BREAKPOINTS.VERY_SMALL;
-  const isSmallScreen = availableHeight < SCREEN_BREAKPOINTS.SMALL;
-  const isMediumScreen = availableHeight < SCREEN_BREAKPOINTS.MEDIUM;
 
   const currentTrackId = currentTrack.currentTrack?._id || "";
   const {
@@ -89,30 +159,48 @@ const MobilePlayer = () => {
       const audioElement = document.querySelector("audio");
       if (audioElement) {
         audioElementRef.current = audioElement;
+        return true;
       }
+      return false;
     };
 
-    findAudioElement();
+    if (!findAudioElement()) {
+      const interval = setInterval(() => {
+        if (findAudioElement()) {
+          clearInterval(interval);
+        }
+      }, 200);
 
-    const interval = setInterval(() => {
-      if (!audioElementRef.current) {
-        findAudioElement();
-      } else {
-        clearInterval(interval);
-      }
-    }, 100);
-
-    return () => clearInterval(interval);
+      return () => clearInterval(interval);
+    }
   }, []);
 
   useEffect(() => {
-    if (!currentTrack.isPlaying) return;
-    const interval = setInterval(() => {
-      if (audioElementRef.current && !audioElementRef.current.paused) {
-        setCurrentTime(audioElementRef.current.currentTime);
+    if (!currentTrack.isPlaying) {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
       }
-    }, 100);
-    return () => clearInterval(interval);
+      return;
+    }
+
+    const updateTime = () => {
+      if (audioElementRef.current && !audioElementRef.current.paused) {
+        const newTime = audioElementRef.current.currentTime;
+        setCurrentTime((prev) => {
+          const diff = Math.abs(newTime - prev);
+          return diff > 0.1 ? newTime : prev;
+        });
+      }
+      animationFrameRef.current = requestAnimationFrame(updateTime);
+    };
+
+    animationFrameRef.current = requestAnimationFrame(updateTime);
+
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
   }, [currentTrack.isPlaying]);
 
   useEffect(() => {
@@ -175,17 +263,21 @@ const MobilePlayer = () => {
     [handleCollapse]
   );
 
-  const handleSeek = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!user || user.status === "USER") {
-      setShowUpgradeModal(true)
-      return
-    }
-    const newTime = Number(e.target.value);
-    setCurrentTime(newTime);
-    if (audioElementRef.current) {
-      audioElementRef.current.currentTime = newTime;
-    }
-  }, []);
+  const handleSeek = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      console.log('working')
+      if (!user || user.status == "USER") {
+        setShowUpgradeModal(true);
+        return;
+      }
+      const newTime = Number(e.target.value);
+      setCurrentTime(newTime);
+      if (audioElementRef.current) {
+        audioElementRef.current.currentTime = newTime;
+      }
+    },
+    [user]
+  );
 
   const getRepeatColor = useCallback(() => {
     switch (queueState.repeat) {
@@ -197,10 +289,32 @@ const MobilePlayer = () => {
     }
   }, [queueState.repeat]);
 
+  const coverStyle = useMemo(
+    () => ({
+      maxWidth: isVerySmallScreen
+        ? COVER_SIZES.VERY_SMALL
+        : isSmallScreen
+        ? COVER_SIZES.SMALL
+        : isMediumScreen
+        ? COVER_SIZES.MEDIUM
+        : COVER_SIZES.LARGE,
+      maxHeight: isVerySmallScreen
+        ? COVER_SIZES.VERY_SMALL
+        : isSmallScreen
+        ? COVER_SIZES.SMALL
+        : isMediumScreen
+        ? COVER_SIZES.MEDIUM
+        : COVER_SIZES.LARGE,
+    }),
+    [isVerySmallScreen, isSmallScreen, isMediumScreen]
+  );
+
+  const canSeek = useMemo(() => user && user.status !== "USER", [user]);
+
   if (!currentTrack.currentTrack) {
     return (
       <div
-        className="fixed left-0 right-0 xl:hidden bg-gradient-to-r from-slate-900/80 via-purple-900/60 to-slate-900/80 backdrop-blur-md border-t border-purple-500/20 p-3 z-40"
+        className="fixed left-0 right-0 xl:hidden bg-gradient-to-r from-slate-900/80 via-purple-900/60 to-slate-900/80 border-t border-purple-500/20 p-3 z-40"
         style={{ bottom: `${MOBILE_NAV_HEIGHT}px` }}
       >
         <div className="flex items-center justify-center">
@@ -211,9 +325,6 @@ const MobilePlayer = () => {
   }
 
   const currentTrackData = currentTrack.currentTrack;
-  const progress = currentTrackData.duration
-    ? (currentTime / currentTrackData.duration) * 100
-    : 0;
 
   return (
     <>
@@ -224,27 +335,21 @@ const MobilePlayer = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
       >
-        <div className="relative h-0.5 bg-gradient-to-r from-transparent via-purple-500/20 to-transparent">
-          <motion.div
-            className="absolute top-0 left-0 h-full bg-gradient-to-r from-purple-400 via-pink-400 to-purple-600 shadow-sm shadow-purple-500/30"
-            style={{
-              width: `${progress}%`,
-              background:
-                progress > 0
-                  ? "linear-gradient(90deg, #a855f7, #ec4899, #8b5cf6)"
-                  : "transparent",
-            }}
-            transition={{ duration: 0.1 }}
-          />
-        </div>
+        <ProgressBar
+          currentTime={currentTime}
+          duration={currentTrackData.duration}
+          onSeek={handleSeek}
+          isCompact={true}
+          canSeek={canSeek}
+        />
 
         <UpgradeModal
           showUpgradeModal={showUpgradeModal}
           setShowUpgradeModal={setShowUpgradeModal}
-        ></UpgradeModal>
+        />
 
         <div
-          className="bg-gradient-to-r from-slate-900/98 via-purple-900/95 to-slate-900/98 backdrop-blur-xl border-t border-purple-500/20 p-2.5 cursor-pointer active:scale-[0.98] transition-transform duration-150"
+          className="bg-gradient-to-r from-slate-900/98 via-purple-900/95 to-slate-900/98 border-t border-purple-500/20 p-2.5 cursor-pointer active:scale-[0.98] transition-transform duration-150"
           onClick={handleExpand}
         >
           <div className="flex items-center justify-between gap-2.5">
@@ -281,7 +386,7 @@ const MobilePlayer = () => {
 
               <motion.button
                 onClick={handleTogglePlayPause}
-                className="p-2 px-3 rounded-full bg-gradient-to-br from-purple-500/90 to-pink-500/90 hover:from-purple-500 hover:to-pink-500 shadow-md backdrop-blur-sm transition-all duration-150"
+                className="p-2 px-3 rounded-full bg-gradient-to-br from-purple-500/90 to-pink-500/90 hover:from-purple-500 hover:to-pink-500 shadow-md transition-all duration-150"
                 whileTap={{ scale: 0.9 }}
                 whileHover={{ scale: 1.02 }}
               >
@@ -318,19 +423,40 @@ const MobilePlayer = () => {
       <AnimatePresence>
         {isExpanded && (
           <motion.div
-            className="fixed inset-0 xl:hidden z-50 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden"
+            className="fixed inset-0 xl:hidden z-50 overflow-hidden"
+            style={{
+              background:
+                "linear-gradient(to bottom right, rgb(15 23 42), rgb(88 28 135), rgb(15 23 42))",
+            }}
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
-            transition={{ type: "spring", damping: 30, stiffness: 300 }}
+            transition={{
+              type: "spring",
+              damping: 35,
+              stiffness: 350,
+              mass: 0.8,
+            }}
             drag="y"
             dragConstraints={{ top: 0, bottom: 0 }}
-            dragElastic={{ top: 0, bottom: 0.2 }}
+            dragElastic={{ top: 0, bottom: 0.15 }}
             onDragEnd={handleDragEnd}
           >
-            <div className="absolute inset-0 opacity-20">
-              <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-500/30 rounded-full blur-3xl" />
-              <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-pink-500/30 rounded-full blur-3xl" />
+            <div className="absolute inset-0 opacity-15 pointer-events-none">
+              <div
+                className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full"
+                style={{
+                  background:
+                    "radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, transparent 70%)",
+                }}
+              />
+              <div
+                className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full"
+                style={{
+                  background:
+                    "radial-gradient(circle, rgba(236, 72, 153, 0.4) 0%, transparent 70%)",
+                }}
+              />
             </div>
 
             <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-10 h-1 bg-white/30 rounded-full" />
@@ -358,7 +484,7 @@ const MobilePlayer = () => {
                 >
                   <motion.button
                     onClick={handleCollapse}
-                    className="p-2 rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 transition-colors duration-150"
+                    className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors duration-150"
                     whileTap={{ scale: 0.9 }}
                   >
                     <DownOutlined
@@ -376,7 +502,7 @@ const MobilePlayer = () => {
 
                   <motion.button
                     onClick={toggleQueue}
-                    className="p-2 rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 transition-colors duration-150"
+                    className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors duration-150"
                     whileTap={{ scale: 0.9 }}
                   >
                     <MenuUnfoldOutlined
@@ -389,35 +515,20 @@ const MobilePlayer = () => {
                 <div className="flex-1 flex items-center justify-center">
                   <motion.div
                     className="relative w-full aspect-square"
-                    style={{
-                      maxWidth: isVerySmallScreen
-                        ? COVER_SIZES.VERY_SMALL
-                        : isSmallScreen
-                        ? COVER_SIZES.SMALL
-                        : isMediumScreen
-                        ? COVER_SIZES.MEDIUM
-                        : COVER_SIZES.LARGE,
-                      maxHeight: isVerySmallScreen
-                        ? COVER_SIZES.VERY_SMALL
-                        : isSmallScreen
-                        ? COVER_SIZES.SMALL
-                        : isMediumScreen
-                        ? COVER_SIZES.MEDIUM
-                        : COVER_SIZES.LARGE,
-                    }}
-                    initial={{ scale: 0.8, opacity: 0 }}
+                    style={coverStyle}
+                    initial={{ scale: 0.9, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 0.1, duration: 0.4 }}
+                    transition={{ delay: 0.05, duration: 0.25 }}
                   >
                     <img
                       src={currentTrackData.coverUrl}
                       alt="Album Cover"
                       className="w-full h-full rounded-2xl object-cover shadow-2xl"
                     />
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-400/20 to-pink-400/20 shadow-xl shadow-purple-500/15" />
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-400/20 to-pink-400/20 shadow-xl shadow-purple-500/10" />
 
                     {isLoading && (
-                      <div className="absolute inset-0 flex items-center justify-center bg-black/60 rounded-2xl backdrop-blur-sm">
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/60 rounded-2xl">
                         <div className="flex flex-col items-center gap-2">
                           <div className="animate-spin rounded-full h-8 w-8 border-3 border-purple-400 border-t-transparent" />
                           <p className="text-white/80 text-xs">Loading...</p>
@@ -429,9 +540,9 @@ const MobilePlayer = () => {
 
                 <div className="flex-shrink-0 space-y-4">
                   <motion.div
-                    initial={{ y: 20, opacity: 0 }}
+                    initial={{ y: 15, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.2, duration: 0.4 }}
+                    transition={{ delay: 0.1, duration: 0.25 }}
                   >
                     <div className="flex items-start justify-between mb-1">
                       <div className="flex-1 min-w-0 mr-3">
@@ -462,9 +573,7 @@ const MobilePlayer = () => {
                           whileTap={{ scale: 0.9 }}
                           onMouseEnter={() => setLikeHover(true)}
                           onMouseLeave={() => setLikeHover(false)}
-                          onClick={() => {
-                            toggleLike;
-                          }}
+                          onClick={toggleLike}
                           disabled={likePending}
                         >
                           {likePending ? (
@@ -494,42 +603,16 @@ const MobilePlayer = () => {
                   </motion.div>
 
                   <motion.div
-                    initial={{ y: 20, opacity: 0 }}
+                    initial={{ y: 15, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.3, duration: 0.4 }}
+                    transition={{ delay: 0.15, duration: 0.25 }}
                   >
-                    <div className="relative mb-2">
-                      <div
-                        className={`w-full bg-white/20 rounded-full overflow-hidden ${
-                          isVerySmallScreen ? "h-1.5" : "h-2"
-                        }`}
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-
-                        <motion.div
-                          className="h-full bg-gradient-to-r from-purple-400 via-pink-400 to-purple-600 rounded-full relative overflow-hidden"
-                          style={{ width: `${progress}%` }}
-                          transition={{ duration: 0.1 }}
-                        >
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                        </motion.div>
-                      </div>
-
-                      <input
-                        type="range"
-                        min={0}
-                        max={currentTrackData.duration || 0}
-                        value={currentTime}
-                        onChange={handleSeek}
-                        className={`absolute inset-0 w-full opacity-0 ${
-                          isVerySmallScreen ? "h-1.5" : "h-2"
-                        } ${
-                          !user || user.status === "USER"
-                            ? " cursor-not-allowed"
-                            : "cursor-pointer"
-                        }`}
-                      />
-                    </div>
+                    <ProgressBar
+                      currentTime={currentTime}
+                      duration={currentTrackData.duration}
+                      onSeek={handleSeek}
+                      canSeek={canSeek}
+                    />
 
                     <div
                       className={`flex justify-between text-white/50 ${
@@ -543,13 +626,13 @@ const MobilePlayer = () => {
 
                   <motion.div
                     className="flex items-center justify-between"
-                    initial={{ y: 20, opacity: 0 }}
+                    initial={{ y: 15, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.4, duration: 0.4 }}
+                    transition={{ delay: 0.2, duration: 0.25 }}
                   >
                     <motion.button
                       onClick={handleShuffle}
-                      className={`rounded-full z-100 hover:bg-white/10 transition-colors duration-150 ${
+                      className={`rounded-full hover:bg-white/10 transition-colors duration-150 ${
                         isVerySmallScreen ? "p-1.5" : "p-2"
                       }`}
                       whileTap={{ scale: 0.9 }}
@@ -566,7 +649,7 @@ const MobilePlayer = () => {
 
                     <motion.button
                       onClick={handlePrevious}
-                      className={`rounded-full z-100 hover:bg-white/10 transition-colors duration-150 ${
+                      className={`rounded-full hover:bg-white/10 transition-colors duration-150 ${
                         isVerySmallScreen ? "p-2" : "p-2.5"
                       }`}
                       whileTap={{ scale: 0.9 }}
@@ -579,7 +662,7 @@ const MobilePlayer = () => {
 
                     <motion.button
                       onClick={handleTogglePlayPause}
-                      className={`rounded-full z-100 bg-gradient-to-br from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 shadow-lg shadow-purple-500/25 ${
+                      className={`rounded-full bg-gradient-to-br from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 shadow-lg shadow-purple-500/25 ${
                         isVerySmallScreen
                           ? "p-3"
                           : isSmallScreen
@@ -612,7 +695,7 @@ const MobilePlayer = () => {
 
                     <motion.button
                       onClick={handleNext}
-                      className={`rounded-full z-100 hover:bg-white/10 transition-colors duration-150 ${
+                      className={`rounded-full hover:bg-white/10 transition-colors duration-150 ${
                         isVerySmallScreen ? "p-2" : "p-2.5"
                       }`}
                       whileTap={{ scale: 0.9 }}
@@ -625,7 +708,7 @@ const MobilePlayer = () => {
 
                     <motion.button
                       onClick={handleRepeat}
-                      className={`rounded-full z-100 hover:bg-white/10 transition-colors duration-150 relative ${
+                      className={`rounded-full hover:bg-white/10 transition-colors duration-150 relative ${
                         isVerySmallScreen ? "p-1.5" : "p-2"
                       }`}
                       whileTap={{ scale: 0.9 }}

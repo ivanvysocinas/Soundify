@@ -109,7 +109,7 @@ const NotFound404 = () => {
             className="mb-8"
           >
             <div
-              className="inline-block bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-6 sm:p-8 lg:p-12 shadow-2xl"
+              className="inline-block bg-white/10 border border-white/20 rounded-3xl p-6 sm:p-8 lg:p-12 shadow-2xl"
               style={{
                 transform: `translate(${(mousePosition.x - 50) * 0.05}px, ${
                   (mousePosition.y - 50) * 0.05
@@ -128,7 +128,7 @@ const NotFound404 = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-8"
           >
-            <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl">
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
                 Oops! Page Not Found
               </h2>
@@ -174,7 +174,7 @@ const NotFound404 = () => {
               onClick={goHome}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="w-full sm:w-auto bg-white/20 backdrop-blur-md border border-white/30 hover:bg-white/25 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="w-full sm:w-auto bg-white/20 border border-white/30 hover:bg-white/25 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
             >
               <span className="flex items-center justify-center gap-2">
                 <svg
@@ -198,7 +198,7 @@ const NotFound404 = () => {
               onClick={goBack}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="w-full sm:w-auto bg-gradient-to-r from-purple-500/80 to-pink-500/80 backdrop-blur-md border border-purple-400/30 hover:from-purple-600/80 hover:to-pink-600/80 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="w-full sm:w-auto bg-gradient-to-r from-purple-500/80 to-pink-500/80 border border-purple-400/30 hover:from-purple-600/80 hover:to-pink-600/80 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
             >
               <span className="flex items-center justify-center gap-2">
                 <svg
@@ -225,7 +225,7 @@ const NotFound404 = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="mt-12"
           >
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 sm:p-6">
+            <div className="bg-white/5 border border-white/10 rounded-xl p-4 sm:p-6">
               <h3 className="text-lg font-semibold text-purple-200 mb-3">
                 Need help finding something?
               </h3>

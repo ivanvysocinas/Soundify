@@ -98,7 +98,7 @@ const UserLikedPlaylistsPage = () => {
             <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-4">
               <button
                 onClick={() => navigate(`/profile/${userId}`)}
-                className="w-10 h-10 sm:w-12 sm:h-12 bg-black/30 hover:bg-black/50 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white transition-all duration-200 hover:scale-105 self-start"
+                className="w-10 h-10 sm:w-12 sm:h-12 bg-black/30 hover:bg-black/50 border border-white/20 rounded-full flex items-center justify-center text-white transition-all duration-200 hover:scale-105 self-start"
                 aria-label="Back to profile"
               >
                 <ArrowLeftOutlined className="text-sm sm:text-base" />

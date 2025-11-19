@@ -145,7 +145,7 @@ const MainMenu: FC<MainMenuProps> = ({
     if (!hasUnsavedChanges || !isEditable) return null;
 
     return (
-      <div className="px-6 py-3 mb-4 bg-yellow-500/10 border border-yellow-500/20 rounded-lg backdrop-blur-sm">
+      <div className="px-6 py-3 mb-4 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
@@ -192,7 +192,7 @@ const MainMenu: FC<MainMenuProps> = ({
   };
 
   return (
-    <div className="w-full bg-white/10 rounded-3xl border border-white/20 overflow-hidden backdrop-blur-sm">
+    <div className="w-full bg-white/10 rounded-3xl border border-white/20 overflow-hidden">
       {renderUnsavedChangesIndicator()}
       {renderEditNotice()}
 

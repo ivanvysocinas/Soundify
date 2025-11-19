@@ -140,7 +140,7 @@ const TagsSelector: React.FC<TagsSelectorProps> = ({
             />
 
             {/* Dropdown Content */}
-            <div className="absolute top-full left-0 mt-2 w-80 max-h-60 overflow-y-auto bg-slate-800/95 backdrop-blur-md border border-white/20 rounded-xl shadow-xl z-20 queue-scroll">
+            <div className="absolute top-full left-0 mt-2 w-80 max-h-60 overflow-y-auto bg-slate-800/95 border border-white/20 rounded-xl shadow-xl z-20 queue-scroll">
               <div className="p-2">
                 <div className="grid grid-cols-2 gap-1">
                   {availableTagsToAdd.map((tag) => (

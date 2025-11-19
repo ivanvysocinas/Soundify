@@ -90,7 +90,7 @@ const AdminPanel = () => {
     change: string;
   }) => {
     return (
-      <div className="p-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl">
+      <div className="p-6 bg-white/5 border border-white/10 rounded-xl">
         <div className="flex items-center justify-between mb-2">
           <span className="text-white/60 text-sm">{label}</span>
           {!loading && !error && (
@@ -130,7 +130,7 @@ const AdminPanel = () => {
           <div className="flex items-center gap-4">
             <button
               onClick={handleBackClick}
-              className="p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-200"
+              className="p-3 rounded-full bg-white/10 border border-white/20 hover:bg-white/20 transition-all duration-200"
             >
               <ArrowLeftOutlined className="text-white text-xl" />
             </button>
@@ -144,7 +144,7 @@ const AdminPanel = () => {
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <div className="p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20">
+            <div className="p-3 rounded-full bg-white/10 border border-white/20">
               <SettingOutlined className="text-white text-xl" />
             </div>
             <div className="p-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500">
@@ -206,7 +206,7 @@ const AdminPanel = () => {
 
               <div
                 onClick={() => handleActionClick(action)}
-                className="relative p-8 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl hover:bg-white/15 transition-all duration-300 cursor-pointer group-hover:scale-105 group-hover:border-white/30"
+                className="relative p-8 bg-white/10 border border-white/20 rounded-2xl hover:bg-white/15 transition-all duration-300 cursor-pointer group-hover:scale-105 group-hover:border-white/30"
               >
                 <div
                   className={`inline-flex p-4 rounded-xl bg-gradient-to-r ${action.color} mb-6`}

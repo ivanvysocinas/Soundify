@@ -42,7 +42,7 @@ const UserPlaylistsPage = () => {
   if (!isAuthenticated && !isCurrentUserLoading) {
     return (
       <div className="min-h-screen w-full flex items-center justify-center p-4">
-        <div className="max-w-md w-full bg-gradient-to-br from-gray-800/90 to-gray-900/90 backdrop-blur-xl border border-white/10 rounded-2xl p-8 text-center shadow-2xl">
+        <div className="max-w-md w-full bg-gradient-to-br from-gray-800/90 to-gray-900/90 border border-white/10 rounded-2xl p-8 text-center shadow-2xl">
           <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full flex items-center justify-center">
             <svg
               className="w-8 h-8 text-blue-400"
@@ -122,7 +122,7 @@ const UserPlaylistsPage = () => {
             <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-4">
               <button
                 onClick={() => navigate(`/profile/${userId}`)}
-                className="w-10 h-10 sm:w-12 sm:h-12 bg-black/30 hover:bg-black/50 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white transition-all duration-200 hover:scale-105 self-start"
+                className="w-10 h-10 sm:w-12 sm:h-12 bg-black/30 hover:bg-black/50 border border-white/20 rounded-full flex items-center justify-center text-white transition-all duration-200 hover:scale-105 self-start"
                 aria-label="Back to profile"
               >
                 <ArrowLeftOutlined className="text-sm sm:text-base" />

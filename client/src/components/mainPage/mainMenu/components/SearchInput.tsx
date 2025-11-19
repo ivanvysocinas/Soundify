@@ -233,7 +233,7 @@ const SearchInput = () => {
   return (
     <div ref={containerRef} className="relative w-full max-w-md xl:max-w-lg">
       <div
-        className={`flex items-center w-full bg-white/70 backdrop-blur-sm rounded-full px-4 md:px-6 xl:px-9 py-2 md:py-2.5 shadow-lg gap-2 transition-all duration-300 hover:bg-white/80 ${
+        className={`flex items-center w-full bg-white/70 rounded-full px-4 md:px-6 xl:px-9 py-2 md:py-2.5 shadow-lg gap-2 transition-all duration-300 hover:bg-white/80 ${
           isFocused ? "bg-white/90 ring-2 ring-white/30" : ""
         }`}
       >
@@ -269,7 +269,7 @@ const SearchInput = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full left-0 right-0 mt-2 bg-black/50 rounded-xl md:rounded-2xl shadow-2xl border backdrop-blur-sm border-white/20 z-50 overflow-hidden"
+            className="absolute top-full left-0 right-0 mt-2 bg-black/50 rounded-xl md:rounded-2xl shadow-2xl border border-white/20 z-50 overflow-hidden"
           >
             {renderResults()}
           </motion.div>

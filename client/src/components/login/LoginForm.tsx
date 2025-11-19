@@ -101,7 +101,7 @@ const LoginForm = () => {
         initial={{ opacity: 0, y: 100, scale: 0.9 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.8, type: "spring", damping: 20 }}
-        className="relative w-[800px] bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 flex overflow-hidden"
+        className="relative w-[800px] bg-white/5 rounded-3xl shadow-2xl border border-white/10 flex overflow-hidden"
       >
         <div className="flex-1 p-12">
           <motion.div
@@ -122,7 +122,7 @@ const LoginForm = () => {
                 animate={{ opacity: 1, height: "auto", scale: 1 }}
                 exit={{ opacity: 1, height: 0, scale: 0.95 }}
                 transition={{ duration: 0.3, type: "spring" }}
-                className="bg-red-500/10 border border-red-500/30 rounded-xl p-4 backdrop-blur-sm"
+                className="bg-red-500/10 border border-red-500/30 rounded-xl p-4"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-5 h-5 rounded-full bg-red-500/20 flex items-center justify-center flex-shrink-0">
@@ -157,7 +157,7 @@ const LoginForm = () => {
               <input
                 type="text"
                 id="username"
-                className={`w-full px-4 py-3 rounded-xl bg-white/10 backdrop-blur-sm border-2 text-white placeholder-purple-200/50 focus:outline-none transition-all duration-300 ${
+                className={`w-full px-4 py-3 rounded-xl bg-white/10 border-2 text-white placeholder-purple-200/50 focus:outline-none transition-all duration-300 ${
                   errors.username.length > 0
                     ? "border-red-400 focus:border-red-300 focus:ring-red-300/20"
                     : "border-purple-400/30 focus:border-purple-300 focus:ring-purple-300/20 focus:ring-4"
@@ -195,7 +195,7 @@ const LoginForm = () => {
                 <input
                   type={showPassword ? "text" : "password"}
                   id="password"
-                  className={`w-full px-4 py-3 pr-12 rounded-xl bg-white/10 backdrop-blur-sm border-2 text-white placeholder-purple-200/50 focus:outline-none transition-all duration-300 ${
+                  className={`w-full px-4 py-3 pr-12 rounded-xl bg-white/10 border-2 text-white placeholder-purple-200/50 focus:outline-none transition-all duration-300 ${
                     errors.password.length > 0
                       ? "border-red-400 focus:border-red-300 focus:ring-red-300/20"
                       : "border-purple-400/30 focus:border-purple-300 focus:ring-purple-300/20 focus:ring-4"
@@ -308,7 +308,7 @@ const LoginForm = () => {
           </form>
         </div>
 
-        <div className="relative w-[46%] flex flex-col justify-center items-center bg-gradient-to-br from-purple-600/30 to-violet-700/30 backdrop-blur-sm">
+        <div className="relative w-[46%] flex flex-col justify-center items-center bg-gradient-to-br from-purple-600/30 to-violet-700/30">
           <motion.div
             className="relative z-10 text-center px-8"
             initial={{ opacity: 0, y: 50 }}
@@ -324,7 +324,7 @@ const LoginForm = () => {
 
           <motion.button
             onClick={() => navigate("/")}
-            className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all duration-300 flex items-center justify-center group"
+            className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-all duration-300 flex items-center justify-center group"
             whileHover={{ scale: 1.1, rotate: 90 }}
             whileTap={{ scale: 0.9 }}
             initial={{ opacity: 0, rotate: -90 }}

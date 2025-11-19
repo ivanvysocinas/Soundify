@@ -328,7 +328,7 @@ const Player = () => {
     const { showCustom } = useNotification();
 
     return showCustom(
-      <div className="max-w-md w-full bg-yellow-500/10 backdrop-blur-lg border border-yellow-500/30 shadow-lg rounded-xl pointer-events-auto flex ring-1 ring-yellow-500/20">
+      <div className="max-w-md w-full bg-yellow-500/10 border border-yellow-500/30 shadow-lg rounded-xl pointer-events-auto flex ring-1 ring-yellow-500/20">
         <div className="flex-1 w-0 p-4">
           <div className="flex items-start">
             <div className="flex-shrink-0">

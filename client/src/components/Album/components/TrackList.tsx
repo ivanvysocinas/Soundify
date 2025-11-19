@@ -238,7 +238,6 @@ const TracksList: FC<TracksListProps> = ({
               onChange={(e) => setSearchQuery(e.target.value)}
               className="
                 bg-white/10 
-                backdrop-blur-md 
                 border 
                 border-white/20 
                 rounded-full 

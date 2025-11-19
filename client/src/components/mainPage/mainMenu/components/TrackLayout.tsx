@@ -223,7 +223,7 @@ const TrackLayout = ({
       <div className="flex items-center gap-3">
         <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 relative">
           {isLoading ? (
-            <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-white/20 to-white/5 backdrop-blur-md border border-white/20 rounded-lg">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-white/20 to-white/5 border border-white/20 rounded-lg">
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 animate-shimmer" />
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-white/40 text-lg">🎵</div>
@@ -355,7 +355,7 @@ const TrackLayout = ({
       <div className="flex gap-2 md:gap-3 items-end justify-center">
         <div className="w-12 h-12 md:w-16 md:h-16 xl:w-[65px] xl:h-[65px] rounded-lg xl:rounded-[10px] flex items-center justify-center relative overflow-hidden group">
           {isLoading ? (
-            <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-white/20 to-white/5 backdrop-blur-md border border-white/20 rounded-lg xl:rounded-[10px]">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-white/20 to-white/5 border border-white/20 rounded-lg xl:rounded-[10px]">
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 animate-shimmer" />
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-white/40 text-lg xl:text-2xl">🎵</div>
@@ -408,7 +408,7 @@ const TrackLayout = ({
 
         <div className="flex flex-col gap-1 xl:gap-2 min-w-0 flex-1">
           {isLoading ? (
-            <div className="h-4 xl:h-5 w-24 xl:w-36 bg-gradient-to-r from-white/10 via-white/20 to-white/10 backdrop-blur-md border border-white/20 rounded-md relative overflow-hidden">
+            <div className="h-4 xl:h-5 w-24 xl:w-36 bg-gradient-to-r from-white/10 via-white/20 to-white/10 border border-white/20 rounded-md relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 animate-shimmer-delayed" />
             </div>
           ) : (
@@ -418,7 +418,7 @@ const TrackLayout = ({
           )}
 
           {isLoading ? (
-            <div className="h-3 xl:h-4 w-12 xl:w-16 bg-gradient-to-r from-white/8 via-white/15 to-white/8 backdrop-blur-md border border-white/15 rounded-md relative overflow-hidden">
+            <div className="h-3 xl:h-4 w-12 xl:w-16 bg-gradient-to-r from-white/8 via-white/15 to-white/8 border border-white/15 rounded-md relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -skew-x-12 animate-shimmer-delayed-2" />
             </div>
           ) : (
@@ -434,7 +434,7 @@ const TrackLayout = ({
 
       <div className="flex gap-2 md:gap-3 xl:gap-4 items-center relative">
         {isLoading ? (
-          <div className="h-3 xl:h-4 w-8 xl:w-12 mr-8 xl:mr-20 bg-gradient-to-r from-white/8 via-white/15 to-white/8 backdrop-blur-md border border-white/15 rounded-md relative overflow-hidden">
+          <div className="h-3 xl:h-4 w-8 xl:w-12 mr-8 xl:mr-20 bg-gradient-to-r from-white/8 via-white/15 to-white/8 border border-white/15 rounded-md relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -skew-x-12 animate-shimmer" />
           </div>
         ) : (
@@ -447,7 +447,7 @@ const TrackLayout = ({
         )}
 
         {isLoading ? (
-          <div className="w-4 h-4 xl:w-5 xl:h-5 bg-gradient-to-r from-white/10 via-white/20 to-white/10 backdrop-blur-md border border-white/20 rounded-full relative overflow-hidden">
+          <div className="w-4 h-4 xl:w-5 xl:h-5 bg-gradient-to-r from-white/10 via-white/20 to-white/10 border border-white/20 rounded-full relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 animate-shimmer-delayed" />
           </div>
         ) : likePending ? (
@@ -477,7 +477,7 @@ const TrackLayout = ({
         )}
 
         {isLoading ? (
-          <div className="w-4 h-4 xl:w-5 xl:h-5 bg-gradient-to-r from-white/10 via-white/20 to-white/10 backdrop-blur-md border border-white/20 rounded-sm relative overflow-hidden">
+          <div className="w-4 h-4 xl:w-5 xl:h-5 bg-gradient-to-r from-white/10 via-white/20 to-white/10 border border-white/20 rounded-sm relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 animate-shimmer-delayed-2" />
           </div>
         ) : (

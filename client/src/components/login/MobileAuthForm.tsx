@@ -188,7 +188,7 @@ const MobileAuthForm: React.FC<MobileAuthFormProps> = ({ initialMode }) => {
           id={id}
           className={`w-full px-4 py-3 ${
             isPassword ? "pr-12" : ""
-          } rounded-2xl bg-white/10 backdrop-blur-sm border-2 text-white placeholder-purple-200/50 focus:outline-none transition-all duration-300 ${
+          } rounded-2xl bg-white/10 border-2 text-white placeholder-purple-200/50 focus:outline-none transition-all duration-300 ${
             errors.length > 0
               ? "border-red-400 focus:border-red-300"
               : "border-purple-400/30 focus:border-purple-300"
@@ -249,7 +249,7 @@ const MobileAuthForm: React.FC<MobileAuthFormProps> = ({ initialMode }) => {
       >
         <motion.button
           onClick={() => navigate("/")}
-          className="p-2 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 text-white disabled:opacity-50"
+          className="p-2 rounded-2xl bg-white/10 border border-white/20 text-white disabled:opacity-50"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           disabled={isLoading}
@@ -277,7 +277,7 @@ const MobileAuthForm: React.FC<MobileAuthFormProps> = ({ initialMode }) => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4, duration: 0.6 }}
       >
-        <div className="flex bg-white/10 backdrop-blur-sm rounded-2xl p-1 border border-white/20">
+        <div className="flex bg-white/10 rounded-2xl p-1 border border-white/20">
           <motion.button
             className={`flex-1 py-3 rounded-xl font-medium transition-all duration-300 ${
               mode === "login"
@@ -320,7 +320,7 @@ const MobileAuthForm: React.FC<MobileAuthFormProps> = ({ initialMode }) => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 100 }}
               transition={{ duration: 0.4 }}
-              className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 border border-white/10"
+              className="bg-white/5 rounded-3xl p-6 border border-white/10"
             >
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -338,7 +338,7 @@ const MobileAuthForm: React.FC<MobileAuthFormProps> = ({ initialMode }) => {
                   animate={{ opacity: 1, height: "auto", scale: 1 }}
                   exit={{ opacity: 0, height: 0, scale: 0.95 }}
                   transition={{ duration: 0.3, type: "spring" }}
-                  className="bg-red-500/10 border border-red-500/30 rounded-2xl p-3 mb-4 backdrop-blur-sm"
+                  className="bg-red-500/10 border border-red-500/30 rounded-2xl p-3 mb-4"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 rounded-full bg-red-500/20 flex items-center justify-center flex-shrink-0">
@@ -408,7 +408,7 @@ const MobileAuthForm: React.FC<MobileAuthFormProps> = ({ initialMode }) => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -100 }}
               transition={{ duration: 0.4 }}
-              className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 border border-white/10"
+              className="bg-white/5 rounded-3xl p-6 border border-white/10"
             >
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -426,7 +426,7 @@ const MobileAuthForm: React.FC<MobileAuthFormProps> = ({ initialMode }) => {
                   animate={{ opacity: 1, height: "auto", scale: 1 }}
                   exit={{ opacity: 0, height: 0, scale: 0.95 }}
                   transition={{ duration: 0.3, type: "spring" }}
-                  className="bg-red-500/10 border border-red-500/30 rounded-2xl p-3 mb-4 backdrop-blur-sm"
+                  className="bg-red-500/10 border border-red-500/30 rounded-2xl p-3 mb-4"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 rounded-full bg-red-500/20 flex items-center justify-center flex-shrink-0">

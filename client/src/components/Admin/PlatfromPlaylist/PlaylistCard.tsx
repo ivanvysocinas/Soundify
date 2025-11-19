@@ -65,7 +65,7 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({
 
   return (
     <motion.div
-      className="group relative bg-white/10 backdrop-blur-md border border-white/20 rounded-xl overflow-hidden hover:bg-white/15 hover:border-white/30 transition-all duration-300 cursor-pointer"
+      className="group relative bg-white/10 border border-white/20 rounded-xl overflow-hidden hover:bg-white/15 hover:border-white/30 transition-all duration-300 cursor-pointer"
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}
@@ -103,7 +103,7 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({
           {playlist.isDraft && (
             <button
               onClick={handlePublish}
-              className="p-2 bg-green-500/60 backdrop-blur-sm rounded-lg hover:bg-green-500/80 transition-colors"
+              className="p-2 bg-green-500/60 rounded-lg hover:bg-green-500/80 transition-colors"
               title="Publish playlist"
             >
               <CheckCircleOutlined className="text-white text-sm" />
@@ -111,7 +111,7 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({
           )}
           <button
             onClick={handleEdit}
-            className="p-2 bg-black/60 backdrop-blur-sm rounded-lg hover:bg-black/80 transition-colors"
+            className="p-2 bg-black/60 rounded-lg hover:bg-black/80 transition-colors"
             title="Edit playlist"
           >
             <EditOutlined className="text-white text-sm" />
@@ -119,7 +119,7 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({
           <button
             onClick={handleDelete}
             disabled={isDeleting}
-            className="p-2 bg-red-500/60 backdrop-blur-sm rounded-lg hover:bg-red-500/80 transition-colors disabled:opacity-50"
+            className="p-2 bg-red-500/60 rounded-lg hover:bg-red-500/80 transition-colors disabled:opacity-50"
             title="Delete playlist"
           >
             {isDeleting ? (

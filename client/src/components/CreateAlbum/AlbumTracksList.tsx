@@ -171,7 +171,7 @@ const AlbumTracksList: React.FC<AlbumTracksListProps> = ({
     ) : null;
 
   return (
-    <div className="bg-white/5 backdrop-blur-md rounded-lg lg:rounded-2xl border border-white/10 overflow-hidden">
+    <div className="bg-white/5 rounded-lg lg:rounded-2xl border border-white/10 overflow-hidden">
       <div className="p-4 lg:p-6 border-b border-white/10">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-3">
           <div>

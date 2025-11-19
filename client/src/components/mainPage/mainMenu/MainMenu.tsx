@@ -121,7 +121,7 @@ const MainMenu = () => {
             className="flex xl:hidden items-center justify-center gap-4 md:gap-6 mb-4 md:mb-6 flex-shrink-0"
           >
             <button
-              className="px-6 py-2.5 rounded-lg bg-purple-900/30 backdrop-blur-md border border-purple-500/30 text-purple-100 font-medium hover:bg-purple-800/40 transition-all duration-300 shadow-lg hover:shadow-purple-900/30 hover:scale-[1.02] active:scale-95"
+              className="px-6 py-2.5 rounded-lg bg-purple-900/30 border border-purple-500/30 text-purple-100 font-medium hover:bg-purple-800/40 transition-all duration-300 shadow-lg hover:shadow-purple-900/30 hover:scale-[1.02] active:scale-95"
               onClick={handleSignUp}
               aria-label="Sign up for account"
             >
@@ -129,7 +129,7 @@ const MainMenu = () => {
             </button>
 
             <button
-              className="px-6 py-2.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium hover:bg-white/20 transition-all duration-300 shadow-lg hover:shadow-purple-900/20 hover:scale-[1.02] active:scale-95"
+              className="px-6 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white font-medium hover:bg-white/20 transition-all duration-300 shadow-lg hover:shadow-purple-900/20 hover:scale-[1.02] active:scale-95"
               onClick={handleSignIn}
               aria-label="Sign in to account"
             >
@@ -175,7 +175,7 @@ const MainMenu = () => {
         </div>
 
         {isLoading && (
-          <div className="fixed bottom-4 right-4 bg-black/80 text-white px-3 py-2 text-sm rounded-lg backdrop-blur-md border border-white/20 z-50">
+          <div className="fixed bottom-4 right-4 bg-black/80 text-white px-3 py-2 text-sm rounded-lg border border-white/20 z-50">
             Loading...
           </div>
         )}
@@ -235,7 +235,7 @@ const MainMenu = () => {
             transition={{ duration: 0.6, ease: "easeInOut" }}
           >
             <button
-              className="px-6 py-2.5 rounded-lg bg-purple-900/30 backdrop-blur-md border border-purple-500/30 text-purple-100 font-medium hover:bg-purple-800/40 transition-all duration-300 shadow-lg hover:shadow-purple-900/30 hover:scale-[1.02] active:scale-95"
+              className="px-6 py-2.5 rounded-lg bg-purple-900/30 border border-purple-500/30 text-purple-100 font-medium hover:bg-purple-800/40 transition-all duration-300 shadow-lg hover:shadow-purple-900/30 hover:scale-[1.02] active:scale-95"
               onClick={handleSignUp}
               aria-label="Sign up for account"
             >
@@ -243,7 +243,7 @@ const MainMenu = () => {
             </button>
 
             <button
-              className="px-6 py-2.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium hover:bg-white/20 transition-all duration-300 shadow-lg hover:shadow-purple-900/20 hover:scale-[1.02] active:scale-95"
+              className="px-6 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white font-medium hover:bg-white/20 transition-all duration-300 shadow-lg hover:shadow-purple-900/20 hover:scale-[1.02] active:scale-95"
               onClick={handleSignIn}
               aria-label="Sign in to account"
             >

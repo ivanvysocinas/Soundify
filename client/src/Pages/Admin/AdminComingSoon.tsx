@@ -23,7 +23,7 @@ const AdminComingSoon: React.FC<AdminComingSoonProps> = ({
       <div className="text-center">
         <button
           onClick={handleBackClick}
-          className="absolute top-8 left-8 p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-200"
+          className="absolute top-8 left-8 p-3 rounded-full bg-white/10 border border-white/20 hover:bg-white/20 transition-all duration-200"
         >
           <ArrowLeftOutlined className="text-white text-xl" />
         </button>

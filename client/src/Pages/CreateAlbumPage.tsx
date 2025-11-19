@@ -229,7 +229,7 @@ const CreateAlbumPage: React.FC = () => {
           <div className="flex items-center gap-3 xl:gap-4">
             <button
               onClick={handleBack}
-              className="p-2 lg:p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-200"
+              className="p-2 lg:p-3 rounded-full bg-white/10 border border-white/20 hover:bg-white/20 transition-all duration-200"
             >
               <ArrowLeftOutlined className="text-white text-lg lg:text-xl" />
             </button>
@@ -242,7 +242,7 @@ const CreateAlbumPage: React.FC = () => {
                   Upload tracks and create your album
                 </p>
                 {tracks.length > 0 && (
-                  <span className="inline-flex px-2 lg:px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-xs lg:text-sm border border-white/20">
+                  <span className="inline-flex px-2 lg:px-3 py-1 bg-white/10 rounded-full text-xs lg:text-sm border border-white/20">
                     {tracks.length} track{tracks.length > 1 ? "s" : ""} •{" "}
                     {albumData.type.toUpperCase()}
                   </span>
@@ -254,7 +254,7 @@ const CreateAlbumPage: React.FC = () => {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 lg:gap-4">
             <button
               onClick={() => setIsUploadModalOpen(true)}
-              className="flex items-center justify-center gap-2 px-4 lg:px-6 py-2 lg:py-3 bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 text-white rounded-lg lg:rounded-2xl transition-all duration-200 font-medium text-sm lg:text-base"
+              className="flex items-center justify-center gap-2 px-4 lg:px-6 py-2 lg:py-3 bg-white/10 border border-white/20 hover:bg-white/20 text-white rounded-lg lg:rounded-2xl transition-all duration-200 font-medium text-sm lg:text-base"
             >
               <PlusOutlined />
               Add Track
@@ -266,7 +266,7 @@ const CreateAlbumPage: React.FC = () => {
               className={`flex items-center justify-center gap-2 px-6 lg:px-8 py-2 lg:py-3 rounded-lg lg:rounded-2xl font-semibold transition-all duration-200 text-sm lg:text-base ${
                 validation.valid
                   ? "bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white shadow-lg"
-                  : "bg-white/10 text-white/50 cursor-not-allowed backdrop-blur-md border border-white/20"
+                  : "bg-white/10 text-white/50 cursor-not-allowed border border-white/20"
               }`}
             >
               <SaveOutlined />
@@ -277,7 +277,7 @@ const CreateAlbumPage: React.FC = () => {
 
         {hasUnsavedChanges && (
           <motion.div
-            className="mb-4 lg:mb-6 p-3 lg:p-4 bg-yellow-500/10 backdrop-blur-md border border-yellow-500/20 rounded-lg lg:rounded-2xl"
+            className="mb-4 lg:mb-6 p-3 lg:p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-lg lg:rounded-2xl"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
           >
@@ -327,7 +327,7 @@ const CreateAlbumPage: React.FC = () => {
 
         {!validation.valid && (hasUnsavedChanges || tracks.length > 0) && (
           <motion.div
-            className="fixed bottom-4 right-4 lg:bottom-6 lg:right-6 p-3 lg:p-4 bg-red-500/20 backdrop-blur-md border border-red-500/30 rounded-lg lg:rounded-2xl max-w-xs lg:max-w-sm"
+            className="fixed bottom-4 right-4 lg:bottom-6 lg:right-6 p-3 lg:p-4 bg-red-500/20 border border-red-500/30 rounded-lg lg:rounded-2xl max-w-xs lg:max-w-sm"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >

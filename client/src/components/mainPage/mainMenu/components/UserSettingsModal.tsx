@@ -203,7 +203,7 @@ const UserSettingsModal = ({ isOpen, onClose }: UserSettingsModalProps) => {
       {isOpen && (
         <div className="queue-scroll">
           <motion.div
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
+            className="fixed inset-0 bg-black/60 z-50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -218,7 +218,7 @@ const UserSettingsModal = ({ isOpen, onClose }: UserSettingsModalProps) => {
             transition={{ type: "spring", duration: 0.3 }}
           >
             <div className="relative w-full max-w-sm md:max-w-2xl max-h-[95vh] md:max-h-[90vh] overflow-hidden rounded-xl md:rounded-2xl">
-              <div className="absolute inset-0 bg-black/40 backdrop-blur-xl border border-white/10 rounded-xl md:rounded-2xl" />
+              <div className="absolute inset-0 bg-black/40 border border-white/10 rounded-xl md:rounded-2xl" />
               <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/20 rounded-xl md:rounded-2xl" />
 
               <div className="relative p-4 md:p-6 overflow-y-auto max-h-[95vh] md:max-h-[90vh]">

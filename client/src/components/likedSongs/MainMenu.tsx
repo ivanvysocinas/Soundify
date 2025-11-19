@@ -206,7 +206,7 @@ const MainMenu: FC<MainMenuProps> = ({ tracks, isLoading = false }) => {
   };
 
   return (
-    <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg md:rounded-xl shadow-2xl w-full h-full flex flex-col">
+    <div className="bg-white/10 border border-white/20 rounded-lg md:rounded-xl shadow-2xl w-full h-full flex flex-col">
       <div className="pt-2 md:pt-3 px-2 md:px-3 flex-shrink-0">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-3 md:mb-5 px-2 md:px-3 gap-3 md:gap-4">
           <div className="flex items-center gap-2 md:gap-4 order-2 md:order-1">
@@ -255,7 +255,7 @@ const MainMenu: FC<MainMenuProps> = ({ tracks, isLoading = false }) => {
                 }
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-white/8 md:bg-white/10 md:backdrop-blur-md border border-white/20 rounded-full px-8 md:px-10 py-2 text-white placeholder-white/40 focus:outline-none focus:border-white/40 focus:bg-white/12 md:focus:bg-white/15 transition-all duration-200 w-full md:w-[300px] text-sm md:text-base"
+                className="bg-white/8 md:bg-white/10 border border-white/20 rounded-full px-8 md:px-10 py-2 text-white placeholder-white/40 focus:outline-none focus:border-white/40 focus:bg-white/12 md:focus:bg-white/15 transition-all duration-200 w-full md:w-[300px] text-sm md:text-base"
                 aria-label="Search tracks"
               />
               {searchQuery && (

@@ -228,7 +228,7 @@ const Charts: React.FC = () => {
                 ease: "easeInOut",
               }}
             />
-            <div className="relative p-6 xs:p-4 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 backdrop-blur-lg rounded-2xl border border-yellow-500/30">
+            <div className="relative p-6 xs:p-4 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 rounded-2xl border border-yellow-500/30">
               <TrophyOutlined className="text-yellow-400 text-6xl xs:text-5xl" />
             </div>
           </div>
@@ -628,7 +628,7 @@ const Charts: React.FC = () => {
         >
           <motion.button
             onClick={() => navigate(-1)}
-            className="p-2 xs:p-3 bg-white/10 hover:bg-white/20 backdrop-blur-lg rounded-lg xs:rounded-xl transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white/20 flex-shrink-0"
+            className="p-2 xs:p-3 bg-white/10 hover:bg-white/20 rounded-lg xs:rounded-xl transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white/20 flex-shrink-0"
             whileHover={ANIMATION_CONFIG.buttonHover}
             whileTap={ANIMATION_CONFIG.buttonTap}
             aria-label="Go back"
@@ -638,7 +638,7 @@ const Charts: React.FC = () => {
 
           <div className="flex items-center gap-2 xs:gap-3">
             <motion.div
-              className="p-2 xs:p-3 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 backdrop-blur-lg rounded-lg xs:rounded-xl border border-yellow-500/30"
+              className="p-2 xs:p-3 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 rounded-lg xs:rounded-xl border border-yellow-500/30"
               initial={{ scale: 0, rotate: -180 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{
@@ -666,7 +666,7 @@ const Charts: React.FC = () => {
         </motion.header>
 
         <motion.section
-          className="bg-white/8 md:bg-white/5 md:backdrop-blur-lg border border-white/10 rounded-xl xs:rounded-2xl overflow-hidden flex-1 flex items-center justify-center"
+          className="bg-white/8 md:bg-white/5 border border-white/10 rounded-xl xs:rounded-2xl overflow-hidden flex-1 flex items-center justify-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.2 }}
@@ -692,7 +692,7 @@ const Charts: React.FC = () => {
       >
         <motion.button
           onClick={() => navigate(-1)}
-          className="p-2 xs:p-3 bg-white/10 hover:bg-white/20 backdrop-blur-lg rounded-lg xs:rounded-xl transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white/20 flex-shrink-0"
+          className="p-2 xs:p-3 bg-white/10 hover:bg-white/20 rounded-lg xs:rounded-xl transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white/20 flex-shrink-0"
           whileHover={ANIMATION_CONFIG.buttonHover}
           whileTap={ANIMATION_CONFIG.buttonTap}
           aria-label="Go back"
@@ -702,7 +702,7 @@ const Charts: React.FC = () => {
 
         <div className="flex items-center gap-2 xs:gap-3">
           <motion.div
-            className="p-2 xs:p-3 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 backdrop-blur-lg rounded-lg xs:rounded-xl border border-yellow-500/30"
+            className="p-2 xs:p-3 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 rounded-lg xs:rounded-xl border border-yellow-500/30"
             initial={{ scale: 0, rotate: -180 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{
@@ -763,7 +763,7 @@ const Charts: React.FC = () => {
 
       {metadata && !isLoading && (
         <motion.div
-          className="bg-white/8 md:bg-white/5 md:backdrop-blur-lg border border-white/10 rounded-lg xs:rounded-xl p-3 xs:p-4 mb-3 xs:mb-4"
+          className="bg-white/8 md:bg-white/5 border border-white/10 rounded-lg xs:rounded-xl p-3 xs:p-4 mb-3 xs:mb-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.3 }}
@@ -784,7 +784,7 @@ const Charts: React.FC = () => {
       )}
 
       <motion.section
-        className="bg-white/8 md:bg-white/5 md:backdrop-blur-lg border border-white/10 rounded-xl xs:rounded-2xl overflow-hidden"
+        className="bg-white/8 md:bg-white/5 border border-white/10 rounded-xl xs:rounded-2xl overflow-hidden"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.4 }}

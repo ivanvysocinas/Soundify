@@ -55,7 +55,7 @@ const SingleMainMenu: FC<SingleMainMenuProps> = ({ track, isLoading }) => {
       <div className="flex items-center justify-between mb-5 px-3">
         <div className="flex items-center gap-4">
           {isLoading ? (
-            <div className="w-[65px] h-[65px] rounded-full bg-gradient-to-br from-white/15 via-white/25 to-white/10 backdrop-blur-md border border-white/25 relative overflow-hidden">
+            <div className="w-[65px] h-[65px] rounded-full bg-gradient-to-br from-white/15 via-white/25 to-white/10 border border-white/25 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 animate-shimmer"></div>
             </div>
           ) : (
@@ -76,7 +76,7 @@ const SingleMainMenu: FC<SingleMainMenuProps> = ({ track, isLoading }) => {
           )}
 
           {isLoading ? (
-            <div className="w-[42px] h-[42px] bg-gradient-to-r from-white/10 via-white/20 to-white/10 backdrop-blur-md border border-white/20 rounded-lg relative overflow-hidden">
+            <div className="w-[42px] h-[42px] bg-gradient-to-r from-white/10 via-white/20 to-white/10 border border-white/20 rounded-lg relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 animate-shimmer-delayed"></div>
             </div>
           ) : (

@@ -229,7 +229,7 @@ const Header: FC<HeaderProps> = ({
         footer={
           <div className="p-6 pt-0">
             <button
-              className="w-full sm:w-auto px-8 py-3 rounded-full text-base sm:text-lg bg-gradient-to-r from-[#1db954] to-[#1ed760] text-white hover:scale-105 transition-all duration-200 backdrop-blur-sm font-semibold"
+              className="w-full sm:w-auto px-8 py-3 rounded-full text-base sm:text-lg bg-gradient-to-r from-[#1db954] to-[#1ed760] text-white hover:scale-105 transition-all duration-200 font-semibold"
               onClick={handleOk}
               disabled={false}
             >
@@ -268,7 +268,7 @@ const Header: FC<HeaderProps> = ({
                   onClick={handleImageClick}
                 />
                 <div
-                  className="absolute inset-0 bg-black/60 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center backdrop-blur-sm"
+                  className="absolute inset-0 bg-black/60 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center"
                   onClick={handleImageClick}
                 >
                   <span className="text-white text-sm font-medium text-center">
